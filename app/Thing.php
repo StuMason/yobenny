@@ -20,5 +20,10 @@ class Thing extends Model
         'location_url',
         'description',
     ];
+
+    public function user()
+    {
+        return $this->belongsTo('App\User', 'owner_id');
+    }
     
 }

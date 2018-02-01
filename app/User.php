@@ -66,5 +66,10 @@ class User extends Authenticatable
         return null !== $this->roles()->where(‘name’, $role)->first();
     }
 
+    public function things()
+    {
+        return $this->hasMany('App\Thing');
+    }
+
 
 }

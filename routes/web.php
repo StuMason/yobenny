@@ -2,6 +2,7 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\File;
+use App\Thing;
 
 /*
 |--------------------------------------------------------------------------
@@ -13,13 +14,8 @@ use Illuminate\Support\Facades\File;
 | contains the "web" middleware group. Now create something great!
 |
 */
+Route::get('/', 'LandingController@index')->name('landing');
 
-Route::get('/', function () {
-    /**
-     * 
-     */
-    return "this is the start of some $$$";
-});
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
