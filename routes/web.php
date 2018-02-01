@@ -15,17 +15,11 @@ use Illuminate\Support\Facades\File;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    /**
+     * 
+     */
+    return "this is the start of some $$$";
 });
+Auth::routes();
 
-Route::get('/new', function() {
-    return view('new');
-});
-
-Route::get('/mascanner', function (Request $req) { //mascanner?site=https://stuartmason.co.uk
-    //I enter a web address
-    $site = $req->get('site');
-    $homepage = file_get_contents($site);
-    dd($homepage);
-});
-
+Route::get('/home', 'HomeController@index')->name('home');
