@@ -40,7 +40,7 @@
       </div>
       <p class="has-text-grey">
         <a href="{{ route('register') }}">Sign Up</a> &nbsp;·&nbsp;
-        <a href="{{ route('password.request') }}">Forgot Password</a> &nbsp;·&nbsp;
+        <a href="{{ route('password.request') }}">Forgot Password</a>
       </p>
     </div>
   </div>

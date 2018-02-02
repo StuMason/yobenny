@@ -18,4 +18,4 @@ Route::get('/', 'LandingController@index')->name('landing');
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/profile', 'ProfileController@index')->name('profile');

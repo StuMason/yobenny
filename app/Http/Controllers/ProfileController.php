@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-class HomeController extends Controller
+class ProfileController extends Controller
 {
     /**
      * Create a new controller instance.
@@ -23,14 +23,6 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+        echo "Profile";
     }
-
-
-    public function someAdminStuff(Request $request)
-    {
-        $request->user()->authorizeRoles('manager');
-        return view('some.view');
-    }
-
 }
