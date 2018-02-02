@@ -3,9 +3,9 @@
 @section('content')
 <section class="section">
     <div class="container">
-        <div class="columns">
+        <div class="columns is-multiline">
         @foreach($things as $thing)
-            <div class="column is-one-quarter">
+            <div class="column is-one-third">
                 <div class="card">
                     <div class="card-image">
                         <figure class="image is-4by3">
@@ -13,26 +13,17 @@
                         </figure>
                     </div>
                     <div class="card-content">
-                        <div class="media">
-                        <div class="media-left">
-                            <!-- <figure class="image is-48x48">
-                            <img src="https://bulma.io/images/placeholders/96x96.png" alt="Placeholder image">
-                            </figure> -->
-                        </div>
-                        <div class="media-content">
-                            <p class="title is-4">{{ $thing->user->name }}</p>
-                            <p class="subtitle is-6">From {{$thing->start_date}} until {{$thing->end_date}}</p>
-                            {{-- <p class="subtitle is-6">From {{$thing->start_date->toFormattedDateString()}} until {{$thing->end_date->toFormattedDateString()}}</p> --}}
-                        </div>
-                        </div>
-                    
                         <div class="content">
-                        {{$thing->description}}.<br />
-                        Where: {{$thing->location_url}}
-                        <!-- <a href="#">#css</a> <a href="#">#responsive</a> -->
-                        <br>
-                        <time datetime="{{$thing->created_at}}">{{$thing->created_at}}</time>
-                        {{-- <time datetime="2016-1-1">{{$thing->created_at->toDayDateTimeString()}}</time> --}}
+                            <p><strong>From {{ Carbon\Carbon::parse($thing->start_date)->toFormattedDateString() }}<br />
+                            until {{ Carbon\Carbon::parse($thing->end_date)->toFormattedDateString() }}</strong></p>
+                            <p>{{$thing->description}}.</p>
+                            <!-- Where: {{$thing->location_url}} -->
+                            <!-- <a href="#">#css</a> <a href="#">#responsive</a> -->
+                            <small>Posted about
+                            <time datetime="{{$thing->created_at}}">
+                                {{ Carbon\Carbon::parse($thing->created_at)->diffForHumans() }}
+                            </time>
+                            By {{ $thing->user->name }}</small>
                         </div>
                     </div>
                 </div>
