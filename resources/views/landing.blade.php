@@ -14,11 +14,15 @@
                     </div>
                     <div class="card-content">
                         <div class="content">
-                            <p><strong>From {{ Carbon\Carbon::parse($thing->start_date)->toFormattedDateString() }}<br />
-                            until {{ Carbon\Carbon::parse($thing->end_date)->toFormattedDateString() }}</strong></p>
-                            <p>{{$thing->description}}.</p>
-                            <!-- Where: {{$thing->location_url}} -->
-                            <!-- <a href="#">#css</a> <a href="#">#responsive</a> -->
+                            <h2 class="title">{{$thing->title}}</h2>
+                            <p><strong>{{ Carbon\Carbon::parse($thing->start_date)->format('D jS \\of M') }}   
+                            'til {{ Carbon\Carbon::parse($thing->end_date)->format('D jS \\of M') }}<br />
+                            Opens {{ Carbon\Carbon::parse($thing->start_time)->format('G:i') }}   
+                            until {{ Carbon\Carbon::parse($thing->end_time)->format('G:i') }}</strong></p>
+
+                            <!-- <p>{{$thing->description}}.</p> -->
+                            <!-- <p>{{$thing->where}}.</p> -->
+
                             <small>Posted about
                             <time datetime="{{$thing->created_at}}">
                                 {{ Carbon\Carbon::parse($thing->created_at)->diffForHumans() }}

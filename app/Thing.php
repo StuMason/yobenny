@@ -13,9 +13,12 @@ class Thing extends Model
      */
     protected $fillable = [
         'owner_id',
+        'title',
         'approved_by',
         'start_date',
         'end_date',
+        'start_time',
+        'end_time',
         'image_url',
         'location_url',
         'description',
@@ -24,6 +27,11 @@ class Thing extends Model
     public function user()
     {
         return $this->belongsTo('App\User', 'owner_id');
+    }
+
+    public function categories()
+    {
+        return $this->belongsToMany('App\Category');
     }
     
 }

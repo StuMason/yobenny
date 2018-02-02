@@ -3,6 +3,7 @@
 use Illuminate\Database\Seeder;
 use App\Thing;
 use App\User;
+use App\Category;
 
 class ThingTableSeeder extends Seeder
 {
@@ -15,9 +16,11 @@ class ThingTableSeeder extends Seeder
     {
         $admin = User::where('email', 'admin@admin.admin')->first();
         for($i = 0; $i < 10; $i++) {
-            factory(Thing::class)->create([
+            $thing = factory(Thing::class)->create([
                 'approved_by' => $admin->id
             ]);
+
+            $thing->categories()->attach(Category::all());
         }
     }
 }
