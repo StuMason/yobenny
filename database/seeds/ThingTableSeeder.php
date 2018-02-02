@@ -19,7 +19,6 @@ class ThingTableSeeder extends Seeder
             $thing = factory(Thing::class)->create([
                 'approved_by' => $admin->id
             ]);
-
             $thing->categories()->attach(Category::all());
         }
     }

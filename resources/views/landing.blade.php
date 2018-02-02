@@ -23,6 +23,12 @@
                             <!-- <p>{{$thing->description}}.</p> -->
                             <!-- <p>{{$thing->where}}.</p> -->
 
+                            <p><small> 
+                            @foreach($thing->categories as $category)
+                                <span class="tag has-grey-text">{{$category->name}}</span>
+                            @endforeach
+                            </small></p>
+
                             <small>Posted about
                             <time datetime="{{$thing->created_at}}">
                                 {{ Carbon\Carbon::parse($thing->created_at)->diffForHumans() }}
