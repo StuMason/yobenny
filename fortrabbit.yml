@@ -6,7 +6,7 @@ pre: deployment/before.sh
 # optional Composer settings
 composer:
     prefer-source: true
-    no-dev: true
+    no-dev: false
     no-plugins: true
     no-scripts: true
 
