@@ -1,9 +1,9 @@
 <?php
 
 use Illuminate\Database\Seeder;
-use App\Thing;
-use App\User;
-use App\Category;
+use App\Models\Thing;
+use App\Models\User;
+use App\Models\Category;
 
 class ThingTableSeeder extends Seeder
 {
@@ -17,7 +17,7 @@ class ThingTableSeeder extends Seeder
         $admin = User::where('email', 'admin@admin.admin')->first();
         for($i = 0; $i < 10; $i++) {
             $thing = factory(Thing::class)->create([
-                'approved_by' => $admin->id
+                'approved_by' => $admin->uuid
             ]);
             $thing->categories()->attach(Category::all());
         }

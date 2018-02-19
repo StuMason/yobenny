@@ -15,8 +15,8 @@ class CreateThingCategoryTable extends Migration
     {
         Schema::create('category_thing', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('thing_id');
-            $table->string('category_id');
+            $table->uuid('thing_uuid');
+            $table->uuid('category_uuid');
 
         });
     }

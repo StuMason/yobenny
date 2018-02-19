@@ -3,8 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Thing;
-use App\Role;
+use App\Models\Thing;
+use App\Models\Role;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
 
@@ -33,8 +33,8 @@ class AdminController extends Controller
         try {
             $request->user()->authorizeRoles(Role::ADMIN);
 
-            $thing = Thing::findOrFail($thing_id);
-            $thing->approved_by = Auth::user()->id;
+            $thing = Thing::findOrFail($thing_uuid);
+            $thing->approved_by = Auth::user()->uuid;
             $thing->save();
     
             $message = "Event successfully approved! It's now live on the landing page";
