@@ -25,6 +25,8 @@
                 {{ Carbon\Carbon::parse($thing->created_at)->diffForHumans() }}
             </time>
             By {{ $thing->user->name }}</small>
+
+            <p><a href='{{ url("admin/approve/{$thing->uuid}") }}'>Approve</a></p>
         </div>
     </div>
 </section>

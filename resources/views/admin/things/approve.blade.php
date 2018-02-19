@@ -23,8 +23,8 @@
                         <td>{{ Carbon\Carbon::parse($thing->end_date)->format('D jS \\of M') }}</td>
                         <td>{{ Carbon\Carbon::parse($thing->created_at)->diffForHumans() }}</td>
                         <td>{{ $thing->user->name }}</td>
-                        <td><a href='{{ url("things/{$thing->id}") }}'>View</a></td>
-                        <td><a href='{{ url("admin/approve/{$thing->id}") }}'>Approve</a></td>
+                        <td><a href='{{ url("things/{$thing->uuid}") }}'>View</a></td>
+                        <td><a href='{{ url("admin/approve/{$thing->uuid}") }}'>Approve</a></td>
                     </tr>
                 @endforeach
             </tbody>

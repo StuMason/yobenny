@@ -128,7 +128,7 @@
                 @endif
             </div>
 
-            @if($admin)
+            @role('admin')
                 <div class="field">
                     <div class="control">
                         <label class="checkbox">
@@ -137,7 +137,7 @@
                         </label>
                     </div>
                 </div>
-            @endif
+            @endrole
 
             <div class="field">
                 Are you the owner of this event?

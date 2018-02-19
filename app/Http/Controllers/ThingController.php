@@ -82,7 +82,7 @@ class ThingController extends Controller
             ]);
     
             $thing = new Thing();
-            $thing->owner_id = Auth::user()->uuid;
+            $thing->owner_uuid = Auth::user()->uuid;
             $thing->title = $request->input('title');
             $thing->approved_by = $this->setApprovedBy($request->all());
             $thing->start_date = $request->input('start_date');

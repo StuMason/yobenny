@@ -4,6 +4,7 @@ namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
 use Laravel\Dusk\DuskServiceProvider;
+use Illuminate\Support\Facades\Blade;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -14,7 +15,13 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        //
+        Blade::if('role', function($roles) {
+            $user = auth()->user();
+            if(!is_array($roles)) {
+                $roles = [$roles];
+            }
+            return $user->hasAnyRole($roles);
+        });
     }
 
     /**
