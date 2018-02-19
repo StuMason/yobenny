@@ -13,7 +13,7 @@ class UserTableSeeder extends Seeder
      */
     public function run()
     {
-        $adminRole = Role::where('name', 'admin')->first();
+        $adminRole = Role::where('name', Role::ADMIN)->first();
 
         $adminUser = factory(User::class)->create([
             'name' => 'admin',

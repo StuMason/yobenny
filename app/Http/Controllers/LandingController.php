@@ -14,6 +14,6 @@ class LandingController extends Controller
      */
     public function index()
     {
-        return view('landing', ['things' => Thing::all()]);
+        return view('landing', ['things' => Thing::whereNotNull('approved_by')->get()]);
     }
 }

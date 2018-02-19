@@ -16,7 +16,7 @@ class CreateThingTable extends Migration
         Schema::create('things', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('owner_id');
-            $table->integer('approved_by');
+            $table->integer('approved_by')->nullable();
             $table->dateTime('start_date');
             $table->dateTime('end_date');
             $table->string('image_url');

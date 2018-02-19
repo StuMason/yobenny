@@ -3,119 +3,163 @@
 @section('content')
 <section class="section">
     <div class="container">
-        <form action="{{ route('things.add.process') }}" method="POST">
-        {{ csrf_field() }}
-        'owner_id',
-        'title',
-        'approved_by',
-        'start_date',
-        'end_date',
-        'start_time',
-        'end_time',
-        'image_url',
-        'location_url',
-        'description',
-
-        @if (count($errors) > 0)
-        <div class="help is danger">
-            <strong>Whoops!</strong> Check the errors below and submit again!<br />
-            <ul>
-                @foreach ($errors->all() as $error)
-                    <li>{{ $error }}</li>
-                @endforeach
-            </ul>
-        </div>
+        @if($errors->any())
+        <article class="message is-danger">
+            <div class="message-header">
+                <p>Oops!</p>
+                <button class="delete" aria-label="delete"></button>
+            </div>
+            <div class="message-body">
+                <ul>
+                    @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
+        </article>
         @endif
-        <div class="field">
-            <label class="label">Event Title</label>
-            <div class="control">
-                <input  class="input" 
-                        type="text" 
-                        name="title" 
-                        placeholder="Event Title - short and sweet!">
-            </div>
-            @if ($errors->has('title'))
-                <p class="help is-danger">{{ $errors->first('title') }}</p>
-            @endif
-        </div>
-
-
+        <form action="{{ route('things.add.process') }}" method="POST">
+            {{ csrf_field() }}
             <div class="field">
-            <label class="label">Username</label>
-            <div class="control has-icons-left has-icons-right">
-                <input class="input is-success" type="text" placeholder="Text input">
-                <span class="icon is-small is-left">
-                    <i class="fas fa-user"></i>
-                </span>
-                <span class="icon is-small is-right">
-                    <i class="fas fa-check"></i>
-                </span>
-            </div>
-                <p class="help is-success">This username is available</p>
-            </div>
-
-            <div class="field">
-            <label class="label">Email</label>
-            <div class="control has-icons-left has-icons-right">
-                <input class="input is-danger" type="email" placeholder="Email input" value="hello@">
-                <span class="icon is-small is-left">
-                <i class="fas fa-envelope"></i>
-                </span>
-                <span class="icon is-small is-right">
-                <i class="fas fa-exclamation-triangle"></i>
-                </span>
-            </div>
-            <p class="help is-danger">This email is invalid</p>
-            </div>
-
-            <div class="field">
-            <label class="label">Subject</label>
-            <div class="control">
-                <div class="select">
-                <select>
-                    <option>Select dropdown</option>
-                    <option>With options</option>
-                </select>
+                <label class="label">Event Title</label>
+                <div class="control">
+                    <input  class="input {{ $errors->has('title') ? 'is-danger' : '' }}" 
+                            type="text" 
+                            name="title" 
+                            value="{{ old('title') }}"
+                            placeholder="Event Title - short and sweet!">
                 </div>
-            </div>
-            </div>
-
-            <div class="field">
-            <label class="label">Message</label>
-            <div class="control">
-                <textarea class="textarea" placeholder="Textarea"></textarea>
-            </div>
+                @if ($errors->has('title'))
+                    <p class="help is-danger">{{ $errors->first('title') }}</p>
+                @endif
             </div>
 
             <div class="field">
-            <div class="control">
-                <label class="checkbox">
-                <input type="checkbox">
-                I agree to the <a href="#">terms and conditions</a>
-                </label>
-            </div>
+                <label class="label">Start Date</label>
+                <div class="control">
+                    <input  class="input {{ $errors->has('start_date') ? 'is-danger' : '' }}" 
+                            type="text" 
+                            name="start_date" 
+                            value="{{ old('start_date') }}"
+                            placeholder="yyyy-mm-dd">
+                </div>
+                @if ($errors->has('title'))
+                    <p class="help is-danger">{{ $errors->first('start_date') }}</p>
+                @endif
             </div>
 
             <div class="field">
-            <div class="control">
-                <label class="radio">
-                <input type="radio" name="question">
-                Yes
-                </label>
-                <label class="radio">
-                <input type="radio" name="question">
-                No
-                </label>
+                <label class="label">End Date</label>
+                <div class="control">
+                    <input  class="input {{ $errors->has('end_date') ? 'is-danger' : '' }}" 
+                            type="text" 
+                            name="end_date" 
+                            value="{{ old('end_date') }}"
+                            placeholder="yyyy-mm-dd">
+                </div>
+                @if ($errors->has('title'))
+                    <p class="help is-danger">{{ $errors->first('end_date') }}</p>
+                @endif
             </div>
+
+            <div class="field">
+                <label class="label">Doors Open</label>
+                <div class="control">
+                    <input  class="input {{ $errors->has('start_time') ? 'is-danger' : '' }}" 
+                            type="text" 
+                            name="start_time" 
+                            value="{{ old('start_time') }}"
+                            placeholder="hh:mm">
+                </div>
+                @if ($errors->has('start_time'))
+                    <p class="help is-danger">{{ $errors->first('start_time') }}</p>
+                @endif
+            </div>
+
+            <div class="field">
+                <label class="label">Doors Close</label>
+                <div class="control">
+                    <input  class="input {{ $errors->has('end_time') ? 'is-danger' : '' }}" 
+                            type="text" 
+                            name="end_time" 
+                            value="{{ old('end_time') }}"
+                            placeholder="hh:mm">
+                </div>
+                @if ($errors->has('end_time'))
+                    <p class="help is-danger">{{ $errors->first('end_time') }}</p>
+                @endif
+            </div>
+
+            <div class="field">
+                <label class="label">Event Image URL</label>
+                <div class="control">
+                    <input  class="input {{ $errors->has('image_url') ? 'is-danger' : '' }}" 
+                            type="text" 
+                            name="image_url" 
+                            value="{{ old('image_url') }}"
+                            placeholder="A link to the event image">
+                </div>
+                @if ($errors->has('image_url'))
+                    <p class="help is-danger">{{ $errors->first('image_url') }}</p>
+                @endif
+            </div>
+
+            <div class="field">
+                <label class="label">Google Maps Location URL</label>
+                <div class="control">
+                    <input  class="input {{ $errors->has('location_url') ? 'is-danger' : '' }}" 
+                            type="text" 
+                            name="location_url" 
+                            value="{{ old('location_url') }}"
+                            placeholder="Google maps link to the location">
+                </div>
+                @if ($errors->has('location_url'))
+                    <p class="help is-danger">{{ $errors->first('location_url') }}</p>
+                @endif
+            </div>
+
+            <div class="field">
+                <label class="label">Description</label>
+                <div class="control">
+                    <textarea class="textarea" name="description" placeholder="The description of the event.">{{ old('description') }}</textarea>
+                </div>
+                @if ($errors->has('description'))
+                    <p class="help is-danger">{{ $errors->first('description') }}</p>
+                @endif
+            </div>
+
+            @if($admin)
+                <div class="field">
+                    <div class="control">
+                        <label class="checkbox">
+                        <input type="checkbox" name="approved_by">
+                            Auto Approve this event.
+                        </label>
+                    </div>
+                </div>
+            @endif
+
+            <div class="field">
+                Are you the owner of this event?
+                <div class="control">
+                    <label class="radio">
+                    <input type="radio" name="owner" selected="selected">
+                        Yes
+                    </label>
+                    <label class="radio">
+                    <input type="radio" name="owner">
+                        No
+                    </label>
+                </div>
             </div>
 
             <div class="field is-grouped">
-            <div class="control">
-                <button class="button is-link">Submit</button>
-            </div>
-            <div class="control">
-                <button class="button is-text">Cancel</button>
-            </div>
+                <div class="control">
+                    <button class="button is-link" type="submit">Submit</button>
+                </div>
+                <div class="control">
+                    <a class="button is-text" href=" {{ route('landing') }}">Cancel</a>
+                </div>
             </div>
         </form>
     </div>

@@ -30,6 +30,7 @@
         <div class="navbar-menu">
             <!-- Authentication Links -->
             <div class="navbar-end">
+            <a class="navbar-item" href="{{ route('things.add.form') }}">Submit a new event!</a>
                 @guest
                     <a class="navbar-item" href="{{ route('login') }}">Login</a>
                     <a class="navbar-item" href="{{ route('register') }}">Register</a>
@@ -50,6 +51,23 @@
             </div>
         </div>
     </nav>
+
+    @if (session('message'))
+    <section class="section">
+        <div class="container">
+            <article class="message is-primary">
+                <div class="message-header">
+                    <p>Important!</p>
+                    <button class="delete" aria-label="delete"></button>
+                </div>
+                <div class="message-body">
+                    {{ session('message') }}
+                </div>
+            </article>
+        </div>
+    </section>
+    @endif
+
     @yield('content')
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}"></script>

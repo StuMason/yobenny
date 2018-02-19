@@ -22,6 +22,8 @@ Route::get('/user/profile', 'ProfileController@index')->name('profile');
 
 Route::get('/things/add', 'ThingController@addThingForm')->name('things.add.form');
 Route::post('/things/add', 'ThingController@addThingProcess')->name('things.add.process');
+Route::get('/things/{thing_id}', 'ThingController@showThing')->name('things.show');
 
 
 Route::get('/admin/approve', 'AdminController@approveThings')->name('admin.approve');
+Route::get('/admin/approve/{thing_id}', 'AdminController@approve')->name('admin.approve.thing');
