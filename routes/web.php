@@ -18,4 +18,10 @@ Route::get('/', 'LandingController@index')->name('landing');
 
 Auth::routes();
 
-Route::get('/profile', 'ProfileController@index')->name('profile');
+Route::get('/user/profile', 'ProfileController@index')->name('profile');
+
+Route::get('/things/add', 'ThingController@addThingForm')->name('things.add.form');
+Route::post('/things/add', 'ThingController@addThingProcess')->name('things.add.process');
+
+
+Route::get('/admin/approve', 'AdminController@approveThings')->name('admin.approve');
