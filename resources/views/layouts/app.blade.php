@@ -8,7 +8,7 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'FolkesOn') }}</title>
+    <title>{{ config('app.name', 'YoBenny') }}</title>
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
@@ -18,7 +18,7 @@
     <nav class="navbar" role="navigation" aria-label="main navigation">
         <div class="navbar-brand">
             <a class="navbar-item" href="{{ url('/') }}">
-                <h1 class="title">{{ config('app.name', 'FolkesOn') }}</h1>
+                <h1 class="title">{{ config('app.name', 'YoBenny') }}</h1>
             </a>
 
             <button class="button navbar-burger">
@@ -62,22 +62,6 @@
                 </div>
                 <div class="message-body">
                     {{ session('message') }}
-                </div>
-            </article>
-        </div>
-    </section>
-    @endif
-
-    @if (session('error'))
-    <section class="section">
-        <div class="container">
-            <article class="message is-danger">
-                <div class="message-header">
-                    <p>Important!</p>
-                    <button class="delete" aria-label="delete"></button>
-                </div>
-                <div class="message-body">
-                    {{ session('error') }}
                 </div>
             </article>
         </div>

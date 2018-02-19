@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
-use App\Moels\Thing;
+use App\Models\Thing;
 use App\Models\Role;
 
 class ThingController extends Controller

@@ -17,7 +17,7 @@ class ProfileTest extends DuskTestCase
     public function testShouldNotAllowAccessToProfileWithoutBeingLoggedIn()
     {
         $this->browse(function (Browser $browser) {
-            $browser->visit('/profile')
+            $browser->visit('/user/profile')
                     ->assertSee('Login');
         });
     }

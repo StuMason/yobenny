@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use App\Traits\IdentifiesUsingUuidsTrait;
+use App\Models\User;
 
 class Role extends Model
 {

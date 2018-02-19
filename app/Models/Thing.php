@@ -4,6 +4,8 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use App\Traits\IdentifiesUsingUuidsTrait;
+use App\Models\User;
+use App\Models\Category;
 
 class Thing extends Model
 {
@@ -33,7 +35,7 @@ class Thing extends Model
 
     public function user()
     {
-        return $this->belongsTo(User::class, 'owner_id');
+        return $this->belongsTo(User::class, 'owner_uuid');
     }
 
     public function categories()
