@@ -1,0 +1,18 @@
+version: 2
+
+# called before Composer runs
+# pre: my-script.php arg1 arg2 arg3
+
+# optional Composer settings
+composer:
+    prefer-source: false
+    no-dev: true
+    no-plugins: false
+    no-scripts: true
+
+# called after Composer runs
+# post: my-script.php arg1 arg2 arg3
+
+# list of sustained folders in ~/htdocs. If not given, then it defaults to the "vendor" folder
+# sustained:
+#   - vendor
