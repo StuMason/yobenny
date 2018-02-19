@@ -28,7 +28,7 @@ class AdminController extends Controller
         }
     }
 
-    public function approve(Request $request, $thing_id)
+    public function approve(Request $request, $thing_uuid)
     {
         try {
             $request->user()->authorizeRoles(Role::ADMIN);

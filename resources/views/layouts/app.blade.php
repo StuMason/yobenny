@@ -68,6 +68,22 @@
     </section>
     @endif
 
+    @if (session('error'))
+    <section class="section">
+        <div class="container">
+            <article class="message is-danger">
+                <div class="message-header">
+                    <p>Important!</p>
+                    <button class="delete" aria-label="delete"></button>
+                </div>
+                <div class="message-body">
+                    {{ session('error') }}
+                </div>
+            </article>
+        </div>
+    </section>
+    @endif
+
     @yield('content')
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}"></script>

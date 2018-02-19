@@ -94,7 +94,7 @@ class ThingController extends Controller
             $thing->description = $request->input('description');
             $thing->save();
 
-            return redirect("things/{$thing->id}")->withMessage("Event successfully added!");
+            return redirect("things/{$thing->uuid}")->withMessage("Event successfully added!");
 
         // } catch (\Exception $e) {
         //     $message = sprintf("Error - Message: %s File: %s Line: %s",
