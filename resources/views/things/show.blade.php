@@ -26,7 +26,12 @@
             </time>
             By {{ $thing->user->name }}</small>
 
-            <p><a href='{{ url("admin/approve/{$thing->uuid}") }}'>Approve</a></p>
+            @role('admin')
+                @if($thing->approved_by === null)
+                    <p><a href='{{ url("admin/approve/{$thing->uuid}") }}'>Approve</a></p>
+                @endif
+            @endrole
+
         </div>
     </div>
 </section>
