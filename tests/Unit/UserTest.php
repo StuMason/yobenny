@@ -20,6 +20,19 @@ class UserTest extends TestCase
     {
         $this->expectException(HttpException::class);
 
+        list($adminUser, $user, $adminRole) = $this->makeUsersAndRoles();
+
+        $this->assertFalse($user->hasAnyRole([Role::ADMIN]));
+        $this->assertTrue($adminUser->hasAnyRole([Role::ADMIN]));
+
+        $this->assertFalse($user->hasRole(Role::ADMIN));
+        $this->assertTrue($adminUser->hasRole(Role::ADMIN));
+
+        $user->authorizeRoles(Role::ADMIN);
+    }
+
+    public function makeUsersAndRoles()
+    {
         $adminRole = factory(Role::class)->create([
             "name" => Role::ADMIN
         ]);
@@ -38,12 +51,6 @@ class UserTest extends TestCase
             'password'=> bcrypt('secret')
         ]);
 
-        $this->assertFalse($user->hasAnyRole([Role::ADMIN]));
-        $this->assertTrue($adminUser->hasAnyRole([Role::ADMIN]));
-
-        $this->assertFalse($user->hasRole(Role::ADMIN));
-        $this->assertTrue($adminUser->hasRole(Role::ADMIN));
-
-        $user->authorizeRoles(Role::ADMIN);
+        return [$adminUser, $user, $adminRole];
     }
 }
