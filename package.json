@@ -19,6 +19,9 @@
         "vue": "^2.5.7"
     },
     "dependencies": {
-        "vue-bulma-datepicker": "^1.3.6"
+        "stylus": "^0.54.5",
+        "stylus-loader": "^3.0.1",
+        "vue-bulma-datepicker": "^1.3.6",
+        "vue-google-autocomplete": "^1.0.14"
     }
 }

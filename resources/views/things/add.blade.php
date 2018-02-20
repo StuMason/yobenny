@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-<section class="section">
+<section class="section" id="add-thing">
     <div class="container">
         @if($errors->any())
         <article class="message is-danger">
@@ -37,13 +37,13 @@
             <div class="field">
                 <label class="label">Start Date</label>
                 <div class="control">
-                    <input  class="input {{ $errors->has('start_date') ? 'is-danger' : '' }}" 
-                            type="text" 
-                            name="start_date" 
-                            value="{{ old('start_date') }}"
-                            placeholder="yyyy-mm-dd">
+                <date-picker name="start_date"
+                             class="input {{ $errors->has('start_date') ? 'is-danger' : '' }}" 
+                             type="text" 
+                             value="{{ old('start_date') }}"
+                ></date-picker>
                 </div>
-                @if ($errors->has('title'))
+                @if ($errors->has('start_date'))
                     <p class="help is-danger">{{ $errors->first('start_date') }}</p>
                 @endif
             </div>
@@ -51,13 +51,13 @@
             <div class="field">
                 <label class="label">End Date</label>
                 <div class="control">
-                    <input  class="input {{ $errors->has('end_date') ? 'is-danger' : '' }}" 
-                            type="text" 
-                            name="end_date" 
-                            value="{{ old('end_date') }}"
-                            placeholder="yyyy-mm-dd">
+                <date-picker name="end_date"
+                             class="input {{ $errors->has('end_date') ? 'is-danger' : '' }}" 
+                             type="text" 
+                             value="{{ old('end_date') }}"
+                ></date-picker>
                 </div>
-                @if ($errors->has('title'))
+                @if ($errors->has('end_date'))
                     <p class="help is-danger">{{ $errors->first('end_date') }}</p>
                 @endif
             </div>
@@ -65,11 +65,12 @@
             <div class="field">
                 <label class="label">Doors Open</label>
                 <div class="control">
-                    <input  class="input {{ $errors->has('start_time') ? 'is-danger' : '' }}" 
-                            type="text" 
-                            name="start_time" 
-                            value="{{ old('start_time') }}"
-                            placeholder="hh:mm">
+                    <time-picker class="input {{ $errors->has('start_time') ? 'is-danger' : '' }}" 
+                                 type="text" 
+                                 name="start_time" 
+                                 value="{{ old('start_time') }}"
+                                 placeholder="hh:mm"
+                    ></time-picker>
                 </div>
                 @if ($errors->has('start_time'))
                     <p class="help is-danger">{{ $errors->first('start_time') }}</p>
@@ -79,11 +80,12 @@
             <div class="field">
                 <label class="label">Doors Close</label>
                 <div class="control">
-                    <input  class="input {{ $errors->has('end_time') ? 'is-danger' : '' }}" 
-                            type="text" 
-                            name="end_time" 
-                            value="{{ old('end_time') }}"
-                            placeholder="hh:mm">
+                    <time-picker class="input {{ $errors->has('end_time') ? 'is-danger' : '' }}" 
+                                 type="text" 
+                                 name="end_time" 
+                                 value="{{ old('end_time') }}"
+                                 placeholder="hh:mm">
+                    </time-picker>
                 </div>
                 @if ($errors->has('end_time'))
                     <p class="help is-danger">{{ $errors->first('end_time') }}</p>
@@ -105,13 +107,12 @@
             </div>
 
             <div class="field">
-                <label class="label">Google Maps Location URL</label>
+                <label class="label">Address</label>
                 <div class="control">
-                    <input  class="input {{ $errors->has('location_url') ? 'is-danger' : '' }}" 
-                            type="text" 
-                            name="location_url" 
-                            value="{{ old('location_url') }}"
-                            placeholder="Google maps link to the location">
+                    <google-place-search :country="['uk']" 
+                                         class="input {{ $errors->has('location_url') ? 'is-danger' : '' }}"
+                                         name="location_url">
+                    </google-place-search>
                 </div>
                 @if ($errors->has('location_url'))
                     <p class="help is-danger">{{ $errors->first('location_url') }}</p>

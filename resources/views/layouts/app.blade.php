@@ -12,6 +12,7 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBTFC_t-kFiDR_eh5tLboLxVR5z9hr9Uk8&libraries=places"></script>
     <script defer src="https://use.fontawesome.com/releases/v5.0.0/js/all.js"></script>
 </head>
 <body>
@@ -67,7 +68,7 @@
         </div>
     </section>
     @endif
-
+    
     @yield('content')
 
     <footer class="footer">

@@ -67,44 +67,32 @@ class ThingController extends Controller
      */
     public function addThingProcess(Request $request)
     {
-        //try {
+        $request->validate([
+            "title" => "required",
+            "start_date" => "required|date",
+            "end_date" => "required|date",
+            "start_time" => "required|date",
+            "end_time" => "required|date",
+            "image_url" => "required|url",
+            "location_url" => "required",
+            "description" => "required",
+            "owner" => "required",
+        ]);
 
-            $request->validate([
-                "title" => "required",
-                "start_date" => "required|date",
-                "end_date" => "required|date",
-                "start_time" => "required|date",
-                "end_time" => "required|date",
-                "image_url" => "required|url",
-                "location_url" => "required|url",
-                "description" => "required",
-                "owner" => "required",
-            ]);
-    
-            $thing = new Thing();
-            $thing->owner_uuid = Auth::user()->uuid;
-            $thing->title = $request->input('title');
-            $thing->approved_by = $this->setApprovedBy($request->all());
-            $thing->start_date = $request->input('start_date');
-            $thing->end_date = $request->input('end_date');
-            $thing->start_time = $request->input('start_time');
-            $thing->end_time = $request->input('end_time');
-            $thing->image_url = $request->input('image_url');
-            $thing->location_url = $request->input('location_url');
-            $thing->description = $request->input('description');
-            $thing->save();
+        $thing = new Thing();
+        $thing->owner_uuid = Auth::user()->uuid;
+        $thing->title = $request->input('title');
+        $thing->approved_by = $this->setApprovedBy($request->all());
+        $thing->start_date = $request->input('start_date');
+        $thing->end_date = $request->input('end_date');
+        $thing->start_time = $request->input('start_time');
+        $thing->end_time = $request->input('end_time');
+        $thing->image_url = $request->input('image_url');
+        $thing->location_url = $request->input('location_url');
+        $thing->description = $request->input('description');
+        $thing->save();
 
-            return redirect("things/{$thing->uuid}")->withMessage("Event successfully added!");
-
-        // } catch (\Exception $e) {
-        //     $message = sprintf("Error - Message: %s File: %s Line: %s",
-        //         $e->getMessage(),
-        //         $e->getFile(),
-        //         $e->getLine()
-        //     );
-        //     Log::error($message);
-        //     return redirect()->back()->withError("There was a problem adding this event.");
-        // }
+        return redirect("things/{$thing->uuid}")->withMessage("Event successfully added!");
     }
 
     private function setApprovedBy($data)
