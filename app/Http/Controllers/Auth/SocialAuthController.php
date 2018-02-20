@@ -10,7 +10,6 @@ use Laravel\Socialite\Facades\Socialite;
 
 class SocialAuthController extends Controller
 {
-
     public function __construct()
     {
         $this->middleware('guest');
@@ -46,7 +45,7 @@ class SocialAuthController extends Controller
      */
     public function redirectToProvider($driver)
     {
-        if( ! $this->isProviderAllowed($driver) ) {
+        if (! $this->isProviderAllowed($driver)) {
             return $this->sendFailedResponse("{$driver} is not currently supported");
         }
 
@@ -73,7 +72,7 @@ class SocialAuthController extends Controller
         }
 
         // check for email in returned user
-        return empty( $user->email )
+        return empty($user->email)
             ? $this->sendFailedResponse("No email id returned from {$driver} provider.")
             : $this->loginOrCreateAccount($user, $driver);
     }
@@ -106,7 +105,7 @@ class SocialAuthController extends Controller
         $user = User::where('email', $providerUser->getEmail())->first();
 
         // if user already found
-        if( $user ) {
+        if ($user) {
             // update the avatar and provider that might have changed
             $user->update([
                 'avatar' => $providerUser->avatar,

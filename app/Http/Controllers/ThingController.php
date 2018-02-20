@@ -30,7 +30,8 @@ class ThingController extends Controller
         try {
             return view('things.show', ['thing' => Thing::findOrFail($thing_uuid)]);
         } catch (\Exception $e) {
-            $message = sprintf("Error - Message: %s File: %s Line: %s",
+            $message = sprintf(
+                "Error - Message: %s File: %s Line: %s",
                 $e->getMessage(),
                 $e->getFile(),
                 $e->getLine()
@@ -50,7 +51,8 @@ class ThingController extends Controller
         try {
             return view('things.add', ['admin' => Auth::user()->hasRole(Role::ADMIN)]);
         } catch (\Exception $e) {
-            $message = sprintf("Error - Message: %s File: %s Line: %s",
+            $message = sprintf(
+                "Error - Message: %s File: %s Line: %s",
                 $e->getMessage(),
                 $e->getFile(),
                 $e->getLine()
@@ -60,7 +62,7 @@ class ThingController extends Controller
         }
     }
 
-        /**
+    /**
      * Show the application dashboard.
      *
      * @return \Illuminate\Http\Response

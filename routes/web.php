@@ -32,15 +32,14 @@ Route::get('auth/social', 'Auth\SocialAuthController@show')->name('social.login'
 Route::get('oauth/{driver}', 'Auth\SocialAuthController@redirectToProvider')->name('social.oauth');
 Route::get('oauth/{driver}/callback', 'Auth\SocialAuthController@handleProviderCallback')->name('social.callback');
 
-Route::get('/about', function() {
+Route::get('/about', function () {
     return view('pages.about');
 })->name('pages.about');
 
-Route::get('/terms', function() {
+Route::get('/terms', function () {
     return view('pages.terms');
 })->name('pages.terms');
 
-Route::get('/privacy', function() {
+Route::get('/privacy', function () {
     return view('pages.privacy');
 })->name('pages.privacy');
-

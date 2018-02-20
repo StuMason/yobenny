@@ -10,7 +10,6 @@ use Illuminate\Support\Facades\Log;
 
 class AdminController extends Controller
 {
-
     public function approveThings(Request $request)
     {
         try {
@@ -18,7 +17,8 @@ class AdminController extends Controller
             $things = Thing::whereNull('approved_by')->get();
             return view('admin.things.approve', ['things' => $things]);
         } catch (\Exception $e) {
-            $message = sprintf("Error - Message: %s File: %s Line: %s",
+            $message = sprintf(
+                "Error - Message: %s File: %s Line: %s",
                 $e->getMessage(),
                 $e->getFile(),
                 $e->getLine()
@@ -40,7 +40,8 @@ class AdminController extends Controller
             $message = "Event successfully approved! It's now live on the landing page";
             return redirect("/admin/approve")->withMessage($message);
         } catch (\Exception $e) {
-            $message = sprintf("Error - Message: %s File: %s Line: %s",
+            $message = sprintf(
+                "Error - Message: %s File: %s Line: %s",
                 $e->getMessage(),
                 $e->getFile(),
                 $e->getLine()
