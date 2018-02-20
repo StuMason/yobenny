@@ -69,6 +69,17 @@
     @endif
 
     @yield('content')
+
+    <footer class="footer">
+        <div class="container">
+            <div class="content has-text-centered">
+            <p>
+                <strong>YoBenny</strong> by <a href="https://artaten.com" target="_BLANK">artaten</a>. Copyright 2018.<br />
+                <a href="/terms">Terms</a> | <a href="/privacy">Privacy</a> | <a href="/about">About</a>
+            </p>
+            </div>
+        </div>
+    </footer>
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}"></script>
 </body>
