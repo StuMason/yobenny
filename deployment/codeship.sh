@@ -2,6 +2,8 @@
 phpenv local 7.1
 mkdir -p ./bootstrap/cache
 cp .env.codeship .env
+mysql -e "CREATE USER 'mr_test'@'%' IDENTIFIED BY 'password';"
+mysql -e "GRANT ALL PRIVILEGES ON *.* TO 'mr_test'@'%';"
 composer install --no-interaction --no-scripts
 yarn install
 npm run development
