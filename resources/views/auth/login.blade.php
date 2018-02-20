@@ -2,11 +2,42 @@
 
 @section('content')
 <section class="hero is-fullheight">
+    @if ($errors->has('msg'))
+    <section class="section">
+        <div class="container">
+            <article class="message is-primary">
+                <div class="message-header">
+                    <p>Important!</p>
+                    <button class="delete" aria-label="delete"></button>
+                </div>
+                <div class="message-body">
+                {{ $errors->first('msg') }}
+                </div>
+            </article>
+        </div>
+    </section>
+    @endif
 <div class="hero-body">
   <div class="container has-text-centered">
     <div class="column is-4 is-offset-4">
       <h3 class="title">Login</h3>
       <div class="box">
+        <!--<a href="{{ route('social.oauth', 'facebook') }}" class="btn btn-primary btn-block">
+            <i class="fab fa-facebook"></i> Login with Facebook
+        </a>
+
+        <a href="{{ route('social.oauth', 'google') }}" class="btn btn-danger btn-block">
+            <i class="fab fa-google"></i> Login with Google
+        </a>-->
+
+                <a href="{{ route('social.oauth', 'github') }}" class="button is-primary">
+            <i class="fab fa-github"></i> Login with Github
+        </a>
+
+        <a href="{{ route('social.oauth', 'twitter') }}" class="button is-primary">
+            <i class="fab fa-twitter"></i>&nbsp;Login with Twitter
+        </a>
+
         <form method="POST" action="{{ route('login') }}">
             {{ csrf_field() }}
             <div class="field">

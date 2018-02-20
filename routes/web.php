@@ -27,3 +27,7 @@ Route::get('/things/{thing_uuid}', 'ThingController@showThing')->name('things.sh
 
 Route::get('/admin/approve', 'AdminController@approveThings')->name('admin.approve');
 Route::get('/admin/approve/{thing_uuid}', 'AdminController@approve')->name('admin.approve.thing');
+
+Route::get('auth/social', 'Auth\SocialAuthController@show')->name('social.login');
+Route::get('oauth/{driver}', 'Auth\SocialAuthController@redirectToProvider')->name('social.oauth');
+Route::get('oauth/{driver}/callback', 'Auth\SocialAuthController@handleProviderCallback')->name('social.callback');
