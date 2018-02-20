@@ -3,7 +3,8 @@ phpenv local 7.1
 mkdir -p ./bootstrap/cache
 cp .env.codeship .env
 composer install --no-interaction --no-scripts
-npm run production
+yarn install
+npm run development
 php artisan migrate:fresh --seed
 ./vendor/laravel/dusk/bin/chromedriver-linux &
 php artisan serve > /dev/null 2>&1 &
