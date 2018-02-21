@@ -31,7 +31,10 @@
         <div class="navbar-menu">
             <!-- Authentication Links -->
             <div class="navbar-end">
-            <a class="navbar-item" href="{{ route('things.add.form') }}">Submit a new event!</a>
+                @role('admin')
+                <a class="navbar-item" href="{{ route('admin') }}">Admin</a>
+                @endrole
+                <a class="navbar-item" href="{{ route('things.add.form') }}">Submit a new event!</a>
                 @guest
                     <a class="navbar-item" href="{{ route('login') }}">Login</a>
                     <a class="navbar-item" href="{{ route('register') }}">Register</a>

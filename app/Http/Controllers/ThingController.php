@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
 use App\Models\Thing;
 use App\Models\Role;
+use Illuminate\Support\Carbon;
 
 class ThingController extends Controller
 {
@@ -73,8 +74,8 @@ class ThingController extends Controller
             "title" => "required",
             "start_date" => "required|date",
             "end_date" => "required|date",
-            "start_time" => "required|date",
-            "end_time" => "required|date",
+            "start_time" => "required",
+            "end_time" => "required",
             "image_url" => "required|url",
             "location_url" => "required",
             "description" => "required",
@@ -85,10 +86,10 @@ class ThingController extends Controller
         $thing->owner_uuid = Auth::user()->uuid;
         $thing->title = $request->input('title');
         $thing->approved_by = $this->setApprovedBy($request->all());
-        $thing->start_date = $request->input('start_date');
-        $thing->end_date = $request->input('end_date');
-        $thing->start_time = $request->input('start_time');
-        $thing->end_time = $request->input('end_time');
+        $thing->start_date = Carbon::parse($request->input('start_date'));
+        $thing->end_date = Carbon::parse($request->input('end_date'));
+        $thing->start_time = Carbon::parse($request->input('start_time'));
+        $thing->end_time = Carbon::parse($request->input('end_time'));
         $thing->image_url = $request->input('image_url');
         $thing->location_url = $request->input('location_url');
         $thing->description = $request->input('description');
