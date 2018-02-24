@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
 use App\Models\Thing;
 use App\Models\Role;
+use App\Models\Address;
 use Illuminate\Support\Carbon;
 
 class ThingController extends Controller
@@ -70,6 +71,8 @@ class ThingController extends Controller
      */
     public function addThingProcess(Request $request)
     {
+        Log::debug($request->all());
+
         $request->validate([
             "title" => "required",
             "start_date" => "required|date",
@@ -77,9 +80,7 @@ class ThingController extends Controller
             "start_time" => "required",
             "end_time" => "required",
             "image_url" => "required|url",
-            "location_url" => "required",
             "description" => "required",
-            "owner" => "required",
         ]);
 
         $thing = new Thing();
@@ -91,9 +92,20 @@ class ThingController extends Controller
         $thing->start_time = Carbon::parse($request->input('start_time'));
         $thing->end_time = Carbon::parse($request->input('end_time'));
         $thing->image_url = $request->input('image_url');
-        $thing->location_url = $request->input('location_url');
         $thing->description = $request->input('description');
         $thing->save();
+
+        $address = new Address();
+        $address->country = $request->input('country');
+        $address->latitude = $request->input('latitude');
+        $address->longitude = $request->input('longitude');
+        $address->postal_code = $request->input('postal_code');
+        $address->route = $request->input('route');
+        $address->street_number = $request->input('street_number');
+        $address->address_json = $request->input('google_json');
+        $address->save();
+
+        $thing->address()->save($address);
 
         return redirect("things/{$thing->uuid}")->withMessage("Event successfully added!");
     }

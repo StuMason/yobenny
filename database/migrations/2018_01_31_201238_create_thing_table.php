@@ -20,9 +20,12 @@ class CreateThingTable extends Migration
             $table->dateTime('start_date');
             $table->dateTime('end_date');
             $table->string('image_url');
-            $table->string('location_url');
             $table->string('description');
             $table->timestamps();
+
+            $table->foreign('owner_uuid')
+                ->references('uuid')->on('users')
+                ->onDelete('cascade');
         });
     }
 

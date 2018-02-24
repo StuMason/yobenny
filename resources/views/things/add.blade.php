@@ -27,6 +27,7 @@
                             type="text" 
                             name="title" 
                             value="{{ old('title') }}"
+                            dusk="thingTitle"
                             placeholder="Event Title - short and sweet!">
                 </div>
                 @if ($errors->has('title'))
@@ -40,6 +41,7 @@
                 <date-picker name="start_date"
                              class="input {{ $errors->has('start_date') ? 'is-danger' : '' }}" 
                              type="text" 
+                             dusk="thingStartDate"
                              value="{{ old('start_date') }}"
                 ></date-picker>
                 </div>
@@ -54,6 +56,7 @@
                 <date-picker name="end_date"
                              class="input {{ $errors->has('end_date') ? 'is-danger' : '' }}" 
                              type="text" 
+                             dusk="thingEndDate"
                              value="{{ old('end_date') }}"
                 ></date-picker>
                 </div>
@@ -68,6 +71,7 @@
                     <time-picker class="input {{ $errors->has('start_time') ? 'is-danger' : '' }}" 
                                  type="text" 
                                  name="start_time" 
+                                 dusk="thingStartTime"
                                  value="{{ old('start_time') }}"
                                  placeholder="hh:mm"
                     ></time-picker>
@@ -83,6 +87,7 @@
                     <time-picker class="input {{ $errors->has('end_time') ? 'is-danger' : '' }}" 
                                  type="text" 
                                  name="end_time" 
+                                 dusk="thingEndTime"
                                  value="{{ old('end_time') }}"
                                  placeholder="hh:mm">
                     </time-picker>
@@ -98,6 +103,7 @@
                     <input  class="input {{ $errors->has('image_url') ? 'is-danger' : '' }}" 
                             type="text" 
                             name="image_url" 
+                            dusk="thingImage"
                             value="{{ old('image_url') }}"
                             placeholder="A link to the event image">
                 </div>
@@ -109,10 +115,8 @@
             <div class="field">
                 <label class="label">Address</label>
                 <div class="control">
-                    <google-place-search :country="['uk']" 
-                                         class="input {{ $errors->has('location_url') ? 'is-danger' : '' }}"
-                                         name="location_url">
-                    </google-place-search>
+                    <google-auto-complete class="is-loading {{ $errors->has('image_url') ? 'is-danger' : '' }}">
+                    </google-auto-complete>
                 </div>
                 @if ($errors->has('location_url'))
                     <p class="help is-danger">{{ $errors->first('location_url') }}</p>
@@ -122,7 +126,10 @@
             <div class="field">
                 <label class="label">Description</label>
                 <div class="control">
-                    <textarea class="textarea" name="description" placeholder="The description of the event.">{{ old('description') }}</textarea>
+                    <textarea class="textarea" 
+                              name="description" 
+                              placeholder="The description of the event."
+                              dusk="thingDescription">{{ old('description') }}</textarea>
                 </div>
                 @if ($errors->has('description'))
                     <p class="help is-danger">{{ $errors->first('description') }}</p>
@@ -133,7 +140,9 @@
                 <div class="field">
                     <div class="control">
                         <label class="checkbox">
-                        <input type="checkbox" name="approved_by">
+                        <input type="checkbox" 
+                               name="approved_by"
+                               dusk="thingApprovedBy">
                             Auto Approve this event.
                         </label>
                     </div>
@@ -144,11 +153,16 @@
                 Are you the owner of this event?
                 <div class="control">
                     <label class="radio">
-                    <input type="radio" name="owner" selected="selected">
+                    <input type="radio"
+                           name="owner" 
+                           selected="selected"
+                           dusk="thingOwnerTrue">
                         Yes
                     </label>
                     <label class="radio">
-                    <input type="radio" name="owner">
+                    <input type="radio" 
+                           name="owner"
+                           dusk="thingOwnerFalse">
                         No
                     </label>
                 </div>
@@ -156,7 +170,9 @@
 
             <div class="field is-grouped">
                 <div class="control">
-                    <button class="button is-link" type="submit">Submit</button>
+                    <button class="button is-link" 
+                            type="submit" 
+                            dusk="thingSubmit">Add Event</button>
                 </div>
                 <div class="control">
                     <a class="button is-text" href=" {{ route('landing') }}">Cancel</a>

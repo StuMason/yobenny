@@ -14,7 +14,6 @@ $factory->define(Thing::class, function (Faker $faker) {
         'start_time' => $faker->dateTime,
         'end_time' => $faker->dateTime,
         'image_url' => $faker->imageUrl(),
-        'location_url' => $faker->url,
         'description' => implode($faker->words(10), " "),
     ];
 });
