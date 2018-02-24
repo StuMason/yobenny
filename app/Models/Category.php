@@ -2,19 +2,10 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Model;
-use App\Traits\IdentifiesUsingUuidsTrait;
 use App\Models\Thing;
 
-
-class Category extends Model
+class Category extends BaseModel
 {
-    use IdentifiesUsingUuidsTrait;
-
-    protected $primaryKey = 'uuid';
-    protected $keyType = 'string';
-    public $incrementing = false;
-
     protected $fillable = [
         'name',
         'thing_uuid'

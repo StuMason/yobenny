@@ -7,6 +7,7 @@ use Facebook\WebDriver\Chrome\ChromeOptions;
 use Facebook\WebDriver\Remote\RemoteWebDriver;
 use Facebook\WebDriver\Remote\DesiredCapabilities;
 use Illuminate\Support\Collection;
+use App\Models\User;
 
 abstract class DuskTestCase extends BaseTestCase
 {
@@ -32,14 +33,30 @@ abstract class DuskTestCase extends BaseTestCase
     {
         $options = (new ChromeOptions)->addArguments([
             '--disable-gpu',
-            '--headless'
+            //'--headless',
+            '--window-size=1920,1920'
         ]);
 
         return RemoteWebDriver::create(
-            'http://localhost:9515', DesiredCapabilities::chrome()->setCapability(
-                ChromeOptions::CAPABILITY, $options
+            'http://localhost:9515',
+            DesiredCapabilities::chrome()->setCapability(
+                ChromeOptions::CAPABILITY,
+                $options
             )
         );
     }
 
+    public function loginAdmin()
+    {
+        $this->browse(function ($browser) {
+            $browser->loginAs(User::where('email', env("ADMIN_EMAIL"))->firstOrFail());
+        });
+    }
+
+    public function loginUser()
+    {
+        $this->browse(function ($browser) {
+            $browser->loginAs(User::where('email', env("TEST_USER_EMAIL"))->firstOrFail());
+        });
+    }
 }

@@ -7,6 +7,8 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
 use App\Models\Thing;
 use App\Models\Role;
+use App\Models\Address;
+use Illuminate\Support\Carbon;
 
 class ThingController extends Controller
 {
@@ -30,7 +32,8 @@ class ThingController extends Controller
         try {
             return view('things.show', ['thing' => Thing::findOrFail($thing_uuid)]);
         } catch (\Exception $e) {
-            $message = sprintf("Error - Message: %s File: %s Line: %s",
+            $message = sprintf(
+                "Error - Message: %s File: %s Line: %s",
                 $e->getMessage(),
                 $e->getFile(),
                 $e->getLine()
@@ -50,7 +53,8 @@ class ThingController extends Controller
         try {
             return view('things.add', ['admin' => Auth::user()->hasRole(Role::ADMIN)]);
         } catch (\Exception $e) {
-            $message = sprintf("Error - Message: %s File: %s Line: %s",
+            $message = sprintf(
+                "Error - Message: %s File: %s Line: %s",
                 $e->getMessage(),
                 $e->getFile(),
                 $e->getLine()
@@ -60,37 +64,48 @@ class ThingController extends Controller
         }
     }
 
-        /**
+    /**
      * Show the application dashboard.
      *
      * @return \Illuminate\Http\Response
      */
     public function addThingProcess(Request $request)
     {
+        Log::debug($request->all());
+
         $request->validate([
             "title" => "required",
             "start_date" => "required|date",
             "end_date" => "required|date",
-            "start_time" => "required|date",
-            "end_time" => "required|date",
+            "start_time" => "required",
+            "end_time" => "required",
             "image_url" => "required|url",
-            "location_url" => "required",
             "description" => "required",
-            "owner" => "required",
         ]);
 
         $thing = new Thing();
         $thing->owner_uuid = Auth::user()->uuid;
         $thing->title = $request->input('title');
         $thing->approved_by = $this->setApprovedBy($request->all());
-        $thing->start_date = $request->input('start_date');
-        $thing->end_date = $request->input('end_date');
-        $thing->start_time = $request->input('start_time');
-        $thing->end_time = $request->input('end_time');
+        $thing->start_date = Carbon::parse($request->input('start_date'));
+        $thing->end_date = Carbon::parse($request->input('end_date'));
+        $thing->start_time = Carbon::parse($request->input('start_time'));
+        $thing->end_time = Carbon::parse($request->input('end_time'));
         $thing->image_url = $request->input('image_url');
-        $thing->location_url = $request->input('location_url');
         $thing->description = $request->input('description');
         $thing->save();
+
+        $address = new Address();
+        $address->country = $request->input('country');
+        $address->latitude = $request->input('latitude');
+        $address->longitude = $request->input('longitude');
+        $address->postal_code = $request->input('postal_code');
+        $address->route = $request->input('route');
+        $address->street_number = $request->input('street_number');
+        $address->address_json = $request->input('google_json');
+        $address->save();
+
+        $thing->address()->save($address);
 
         return redirect("things/{$thing->uuid}")->withMessage("Event successfully added!");
     }

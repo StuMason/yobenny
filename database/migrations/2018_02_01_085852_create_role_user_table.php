@@ -17,7 +17,7 @@ class CreateRoleUserTable extends Migration
             $table->increments('id');
             $table->uuid('role_uuid');
             $table->uuid('user_uuid');
-          });
+        });
     }
 
     /**

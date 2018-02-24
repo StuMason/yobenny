@@ -1162,7 +1162,6 @@ module.exports = __webpack_require__(66);
 __webpack_require__(14);
 
 window.Vue = __webpack_require__(37);
-
 /**
  * Next, we will create a fresh Vue application instance and attach it to
  * the page. Then, you may begin adding components to this application
@@ -1170,7 +1169,7 @@ window.Vue = __webpack_require__(37);
  */
 Vue.component('date-picker', __webpack_require__(40));
 Vue.component('time-picker', __webpack_require__(57));
-Vue.component('google-place-search', __webpack_require__(70));
+Vue.component('google-auto-complete', __webpack_require__(60));
 
 var app = new Vue({
   el: '#add-thing'
@@ -43919,8 +43918,113 @@ if (false) {
 }
 
 /***/ }),
-/* 60 */,
-/* 61 */,
+/* 60 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+var normalizeComponent = __webpack_require__(1)
+/* script */
+var __vue_script__ = __webpack_require__(61)
+/* template */
+var __vue_template__ = __webpack_require__(65)
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = null
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources/assets/js/components/GoogleAutoComplete.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-be15c250", Component.options)
+  } else {
+    hotAPI.reload("data-v-be15c250", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 61 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue_google_autocomplete__ = __webpack_require__(62);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue_google_autocomplete___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_vue_google_autocomplete__);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+    components: { VueGoogleAutocomplete: __WEBPACK_IMPORTED_MODULE_0_vue_google_autocomplete___default.a },
+    data: function data() {
+        return {
+            address: '',
+            addressMeta: ''
+        };
+    },
+    mounted: function mounted() {
+        //this.$refs.address.focus();
+        // document.addEventListener("DOMContentLoaded", function(event) {
+        // });
+    },
+
+    methods: {
+        /**
+        * When the location found
+        * @param {Object} addressData Data of the found location
+        * @param {Object} placeResultData PlaceResult object
+        * @param {String} id Input container ID
+        */
+        getAddressData: function getAddressData(addressData, placeResultData, id) {
+            this.address = addressData;
+            this.addressMeta = JSON.stringify(placeResultData);
+        }
+    }
+});
+
+/***/ }),
 /* 62 */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -44266,130 +44370,177 @@ if (false) {
 }
 
 /***/ }),
-/* 65 */,
-/* 66 */
-/***/ (function(module, exports) {
-
-// removed by extract-text-webpack-plugin
-
-/***/ }),
-/* 67 */,
-/* 68 */,
-/* 69 */,
-/* 70 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var disposed = false
-var normalizeComponent = __webpack_require__(1)
-/* script */
-var __vue_script__ = __webpack_require__(71)
-/* template */
-var __vue_template__ = __webpack_require__(72)
-/* template functional */
-var __vue_template_functional__ = false
-/* styles */
-var __vue_styles__ = null
-/* scopeId */
-var __vue_scopeId__ = null
-/* moduleIdentifier (server only) */
-var __vue_module_identifier__ = null
-var Component = normalizeComponent(
-  __vue_script__,
-  __vue_template__,
-  __vue_template_functional__,
-  __vue_styles__,
-  __vue_scopeId__,
-  __vue_module_identifier__
-)
-Component.options.__file = "resources/assets/js/components/GooglePlaceSearch.vue"
-
-/* hot reload */
-if (false) {(function () {
-  var hotAPI = require("vue-hot-reload-api")
-  hotAPI.install(require("vue"), false)
-  if (!hotAPI.compatible) return
-  module.hot.accept()
-  if (!module.hot.data) {
-    hotAPI.createRecord("data-v-21c2996f", Component.options)
-  } else {
-    hotAPI.reload("data-v-21c2996f", Component.options)
-  }
-  module.hot.dispose(function (data) {
-    disposed = true
-  })
-})()}
-
-module.exports = Component.exports
-
-
-/***/ }),
-/* 71 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue_google_autocomplete__ = __webpack_require__(62);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue_google_autocomplete___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_vue_google_autocomplete__);
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-
-
-
-/* harmony default export */ __webpack_exports__["default"] = ({
-    components: { VueGoogleAutocomplete: __WEBPACK_IMPORTED_MODULE_0_vue_google_autocomplete___default.a },
-
-    data: function data() {
-        return {
-            address: ''
-        };
-    },
-
-    mounted: function mounted() {
-        // To demonstrate functionality of exposed component functions
-        // Here we make focus on the user input
-        this.$refs.address.focus();
-    },
-
-
-    methods: {
-        /**
-        * When the location found
-        * @param {Object} addressData Data of the found location
-        * @param {Object} placeResultData PlaceResult object
-        * @param {String} id Input container ID
-        */
-        getAddressData: function getAddressData(addressData, placeResultData, id) {
-            this.address = addressData;
-            console.log(placeResultData.url);
-        }
-    }
-});
-
-/***/ }),
-/* 72 */
+/* 65 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("vue-google-autocomplete", {
-    ref: "address",
-    attrs: {
-      id: "map",
-      placeholder: "Please type your address",
-      country: "uk"
-    },
-    on: { placechanged: _vm.getAddressData }
-  })
+  return _c(
+    "div",
+    [
+      _c("vue-google-autocomplete", {
+        ref: "address",
+        attrs: {
+          id: "map",
+          classname: "input form-control",
+          placeholder: "Start typing the address to find it",
+          country: "uk",
+          dusk: "thingLocation"
+        },
+        on: { placechanged: _vm.getAddressData }
+      }),
+      _vm._v(" "),
+      _c("input", {
+        directives: [
+          {
+            name: "model",
+            rawName: "v-model",
+            value: _vm.address.country,
+            expression: "address.country"
+          }
+        ],
+        attrs: { type: "hidden", name: "country" },
+        domProps: { value: _vm.address.country },
+        on: {
+          input: function($event) {
+            if ($event.target.composing) {
+              return
+            }
+            _vm.$set(_vm.address, "country", $event.target.value)
+          }
+        }
+      }),
+      _vm._v(" "),
+      _c("input", {
+        directives: [
+          {
+            name: "model",
+            rawName: "v-model",
+            value: _vm.address.latitude,
+            expression: "address.latitude"
+          }
+        ],
+        attrs: { type: "hidden", name: "latitude" },
+        domProps: { value: _vm.address.latitude },
+        on: {
+          input: function($event) {
+            if ($event.target.composing) {
+              return
+            }
+            _vm.$set(_vm.address, "latitude", $event.target.value)
+          }
+        }
+      }),
+      _vm._v(" "),
+      _c("input", {
+        directives: [
+          {
+            name: "model",
+            rawName: "v-model",
+            value: _vm.address.longitude,
+            expression: "address.longitude"
+          }
+        ],
+        attrs: { type: "hidden", name: "longitude" },
+        domProps: { value: _vm.address.longitude },
+        on: {
+          input: function($event) {
+            if ($event.target.composing) {
+              return
+            }
+            _vm.$set(_vm.address, "longitude", $event.target.value)
+          }
+        }
+      }),
+      _vm._v(" "),
+      _c("input", {
+        directives: [
+          {
+            name: "model",
+            rawName: "v-model",
+            value: _vm.address.postal_code,
+            expression: "address.postal_code"
+          }
+        ],
+        attrs: { type: "hidden", name: "postal_code" },
+        domProps: { value: _vm.address.postal_code },
+        on: {
+          input: function($event) {
+            if ($event.target.composing) {
+              return
+            }
+            _vm.$set(_vm.address, "postal_code", $event.target.value)
+          }
+        }
+      }),
+      _vm._v(" "),
+      _c("input", {
+        directives: [
+          {
+            name: "model",
+            rawName: "v-model",
+            value: _vm.address.route,
+            expression: "address.route"
+          }
+        ],
+        attrs: { type: "hidden", name: "route" },
+        domProps: { value: _vm.address.route },
+        on: {
+          input: function($event) {
+            if ($event.target.composing) {
+              return
+            }
+            _vm.$set(_vm.address, "route", $event.target.value)
+          }
+        }
+      }),
+      _vm._v(" "),
+      _c("input", {
+        directives: [
+          {
+            name: "model",
+            rawName: "v-model",
+            value: _vm.address.street_number,
+            expression: "address.street_number"
+          }
+        ],
+        attrs: { type: "hidden", name: "street_number" },
+        domProps: { value: _vm.address.street_number },
+        on: {
+          input: function($event) {
+            if ($event.target.composing) {
+              return
+            }
+            _vm.$set(_vm.address, "street_number", $event.target.value)
+          }
+        }
+      }),
+      _vm._v(" "),
+      _c("input", {
+        directives: [
+          {
+            name: "model",
+            rawName: "v-model",
+            value: _vm.addressMeta,
+            expression: "addressMeta"
+          }
+        ],
+        attrs: { type: "hidden", name: "google_json" },
+        domProps: { value: _vm.addressMeta },
+        on: {
+          input: function($event) {
+            if ($event.target.composing) {
+              return
+            }
+            _vm.addressMeta = $event.target.value
+          }
+        }
+      })
+    ],
+    1
+  )
 }
 var staticRenderFns = []
 render._withStripped = true
@@ -44397,9 +44548,15 @@ module.exports = { render: render, staticRenderFns: staticRenderFns }
 if (false) {
   module.hot.accept()
   if (module.hot.data) {
-    require("vue-hot-reload-api")      .rerender("data-v-21c2996f", module.exports)
+    require("vue-hot-reload-api")      .rerender("data-v-be15c250", module.exports)
   }
 }
+
+/***/ }),
+/* 66 */
+/***/ (function(module, exports) {
+
+// removed by extract-text-webpack-plugin
 
 /***/ })
 /******/ ]);

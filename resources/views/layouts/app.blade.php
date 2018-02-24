@@ -13,7 +13,7 @@
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBTFC_t-kFiDR_eh5tLboLxVR5z9hr9Uk8&libraries=places"></script>
-    <script defer src="https://use.fontawesome.com/releases/v5.0.0/js/all.js"></script>
+    <script async defer src="https://use.fontawesome.com/releases/v5.0.0/js/all.js"></script>
 </head>
 <body>
     <nav class="navbar" role="navigation" aria-label="main navigation">
@@ -31,7 +31,10 @@
         <div class="navbar-menu">
             <!-- Authentication Links -->
             <div class="navbar-end">
-            <a class="navbar-item" href="{{ route('things.add.form') }}">Submit a new event!</a>
+                @role('admin')
+                <a class="navbar-item" href="{{ route('admin') }}">Admin</a>
+                @endrole
+                <a class="navbar-item" href="{{ route('things.add.form') }}">Submit a new event!</a>
                 @guest
                     <a class="navbar-item" href="{{ route('login') }}">Login</a>
                     <a class="navbar-item" href="{{ route('register') }}">Register</a>
@@ -81,7 +84,6 @@
             </div>
         </div>
     </footer>
-    <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}"></script>
 </body>
 </html>

@@ -2,19 +2,12 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Model;
-use App\Traits\IdentifiesUsingUuidsTrait;
 use App\Models\User;
 use App\Models\Category;
+use App\Models\Address;
 
-class Thing extends Model
+class Thing extends BaseModel
 {
-    use IdentifiesUsingUuidsTrait;
-
-    protected $primaryKey = 'uuid';
-    protected $keyType = 'string';
-    public $incrementing = false;
-
     /**
      * The attributes that are mass assignable.
      *
@@ -29,7 +22,6 @@ class Thing extends Model
         'start_time',
         'end_time',
         'image_url',
-        'location_url',
         'description',
     ];
 
@@ -42,5 +34,9 @@ class Thing extends Model
     {
         return $this->belongsToMany(Category::class);
     }
-    
+
+    public function address()
+    {
+        return $this->hasOne(Address::class);
+    }
 }

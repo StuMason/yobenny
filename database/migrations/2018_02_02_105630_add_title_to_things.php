@@ -13,7 +13,7 @@ class AddTitleToThings extends Migration
      */
     public function up()
     {
-        Schema::table('things', function($table) {
+        Schema::table('things', function ($table) {
             $table->string('title');
         });
     }
@@ -25,7 +25,7 @@ class AddTitleToThings extends Migration
      */
     public function down()
     {
-        Schema::table('things', function($table) {
+        Schema::table('things', function ($table) {
             $table->dropColumn('title');
         });
     }

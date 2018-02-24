@@ -17,14 +17,7 @@ class AppServiceProvider extends ServiceProvider
     public function boot()
     {
         Schema::defaultStringLength(191);
-
-        Blade::if('role', function($roles) {
-            $user = auth()->user();
-            if(!is_array($roles)) {
-                $roles = [$roles];
-            }
-            return $user->hasAnyRole($roles);
-        });
+        $this->loadBladeExtensions();
     }
 
     /**
@@ -37,5 +30,24 @@ class AppServiceProvider extends ServiceProvider
         if ($this->app->environment('local', 'testing')) {
             $this->app->register(DuskServiceProvider::class);
         }
+    }
+
+    private function loadBladeExtensions()
+    {
+        $this->ifRole();
+    }
+
+    private function ifRole()
+    {
+        Blade::if('role', function ($roles) {
+            $user = auth()->user();
+            if (!$user) {
+                return false;
+            }
+            if (!is_array($roles)) {
+                $roles = [$roles];
+            }
+            return $user->hasAnyRole($roles);
+        });
     }
 }

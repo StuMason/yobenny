@@ -13,7 +13,7 @@ class AddStartAndEndTimeToThing extends Migration
      */
     public function up()
     {
-        Schema::table('things', function($table) {
+        Schema::table('things', function ($table) {
             $table->datetime('start_time');
             $table->datetime('end_time');
         });
@@ -26,7 +26,7 @@ class AddStartAndEndTimeToThing extends Migration
      */
     public function down()
     {
-        Schema::table('things', function($table) {
+        Schema::table('things', function ($table) {
             $table->dropColumn('start_time');
             $table->dropColumn('end_time');
         });

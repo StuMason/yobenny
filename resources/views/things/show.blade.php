@@ -27,7 +27,7 @@
             By {{ $thing->user->name }}</small>
 
             @role('admin')
-                @if($thing->approved_by === null)
+                @if(!$thing->approved_by)
                     <p><a href='{{ url("admin/approve/{$thing->uuid}") }}'>Approve</a></p>
                 @endif
             @endrole

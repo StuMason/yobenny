@@ -10,6 +10,25 @@ use Illuminate\Support\Facades\Log;
 
 class AdminController extends Controller
 {
+    public function index(Request $request)
+    {
+        try {
+            $request->user()->authorizeRoles(Role::ADMIN);
+            $query = $request->all();
+
+            $things = Thing::all();
+            return view('admin.index', ['things' => $things]);
+        } catch (\Exception $e) {
+            $message = sprintf(
+                "Error - Message: %s File: %s Line: %s",
+                $e->getMessage(),
+                $e->getFile(),
+                $e->getLine()
+            );
+            Log::error($message);
+            return redirect()->back()->withError("There was a problem loading the approve events.");
+        }
+    }
 
     public function approveThings(Request $request)
     {
@@ -18,7 +37,8 @@ class AdminController extends Controller
             $things = Thing::whereNull('approved_by')->get();
             return view('admin.things.approve', ['things' => $things]);
         } catch (\Exception $e) {
-            $message = sprintf("Error - Message: %s File: %s Line: %s",
+            $message = sprintf(
+                "Error - Message: %s File: %s Line: %s",
                 $e->getMessage(),
                 $e->getFile(),
                 $e->getLine()
@@ -32,15 +52,19 @@ class AdminController extends Controller
     {
         try {
             $request->user()->authorizeRoles(Role::ADMIN);
-
             $thing = Thing::findOrFail($thing_uuid);
-            $thing->approved_by = Auth::user()->uuid;
+            if ($thing->approved_by) {
+                $thing->approved_by = null;
+            } else {
+                $thing->approved_by = Auth::user()->uuid;
+            }
             $thing->save();
     
             $message = "Event successfully approved! It's now live on the landing page";
             return redirect("/admin/approve")->withMessage($message);
         } catch (\Exception $e) {
-            $message = sprintf("Error - Message: %s File: %s Line: %s",
+            $message = sprintf(
+                "Error - Message: %s File: %s Line: %s",
                 $e->getMessage(),
                 $e->getFile(),
                 $e->getLine()
