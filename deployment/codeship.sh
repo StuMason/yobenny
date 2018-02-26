@@ -2,9 +2,7 @@
 phpenv local 7.1
 mkdir -p ./bootstrap/cache
 cp .env.codeship .env
-curl -sSL https://raw.githubusercontent.com/codeship/scripts/master/packages/mysql-5.7.sh | bash -s
-mysql -e "CREATE USER 'mr_test'@'localhost' IDENTIFIED BY 'password';"
-mysql -e "GRANT ALL PRIVILEGES ON *.* TO 'mr_test'@'%';"
+touch database/database.sqlite
 composer install --no-interaction
 nvm install 6
 yarn install
