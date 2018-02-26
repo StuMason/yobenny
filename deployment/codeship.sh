@@ -1,11 +1,11 @@
 #!/bin/sh
+nvm install 6
 phpenv local 7.1
 mkdir -p ./bootstrap/cache
 cp .env.codeship .env
 touch database/database.sqlite
 composer install --no-interaction
-nvm install 6
-yarn install
+npm install
 npm run development
 php artisan migrate:fresh --seed
 nohup bash -c "./vendor/laravel/dusk/bin/chromedriver-linux 2>&1 &"
