@@ -21,7 +21,7 @@
         <form action="{{ route('things.add.process') }}" method="POST">
             {{ csrf_field() }}
             <div class="field">
-                <label class="label">Event Title</label>
+                <label class="label" for="title">Event Title</label>
                 <div class="control">
                     <input  class="input {{ $errors->has('title') ? 'is-danger' : '' }}" 
                             type="text" 
@@ -34,40 +34,35 @@
                     <p class="help is-danger">{{ $errors->first('title') }}</p>
                 @endif
             </div>
-
-            <div class="field">
-                <label class="label">Start Date</label>
+            <div class="field is-grouped is-grouped-multiline">
                 <div class="control">
-                <date-picker name="start_date"
-                             class="input {{ $errors->has('start_date') ? 'is-danger' : '' }}" 
-                             type="text" 
-                             dusk="thingStartDate"
-                             value="{{ old('start_date') }}"
-                ></date-picker>
+                    <label class="label" for="start_date">Start Date</label>
+                    <date-picker name="start_date"
+                                class="input {{ $errors->has('start_date') ? 'is-danger' : '' }}" 
+                                type="text" 
+                                dusk="thingStartDate"
+                                value="{{ old('start_date') }}"
+                    ></date-picker>
+                    @if ($errors->has('start_date'))
+                        <p class="help is-danger">{{ $errors->first('start_date') }}</p>
+                    @endif
                 </div>
-                @if ($errors->has('start_date'))
-                    <p class="help is-danger">{{ $errors->first('start_date') }}</p>
-                @endif
-            </div>
-
-            <div class="field">
-                <label class="label">End Date</label>
                 <div class="control">
-                <date-picker name="end_date"
-                             class="input {{ $errors->has('end_date') ? 'is-danger' : '' }}" 
-                             type="text" 
-                             dusk="thingEndDate"
-                             value="{{ old('end_date') }}"
-                ></date-picker>
+                    <label class="label" for="end_date">End Date</label>
+                    <date-picker name="end_date"
+                                class="input {{ $errors->has('end_date') ? 'is-danger' : '' }}" 
+                                type="text" 
+                                dusk="thingEndDate"
+                                value="{{ old('end_date') }}"
+                    ></date-picker>
+                    @if ($errors->has('end_date'))
+                        <p class="help is-danger">{{ $errors->first('end_date') }}</p>
+                    @endif
                 </div>
-                @if ($errors->has('end_date'))
-                    <p class="help is-danger">{{ $errors->first('end_date') }}</p>
-                @endif
             </div>
-
-            <div class="field">
-                <label class="label">Doors Open</label>
+            <div class="field is-grouped is-grouped-multiline">
                 <div class="control">
+                    <label class="label" for="start_time">Doors Open</label>
                     <time-picker class="input {{ $errors->has('start_time') ? 'is-danger' : '' }}" 
                                  type="text" 
                                  name="start_time" 
@@ -75,15 +70,12 @@
                                  value="{{ old('start_time') }}"
                                  placeholder="hh:mm"
                     ></time-picker>
+                    @if ($errors->has('start_time'))
+                        <p class="help is-danger">{{ $errors->first('start_time') }}</p>
+                    @endif
                 </div>
-                @if ($errors->has('start_time'))
-                    <p class="help is-danger">{{ $errors->first('start_time') }}</p>
-                @endif
-            </div>
-
-            <div class="field">
-                <label class="label">Doors Close</label>
                 <div class="control">
+                    <label class="label" for="end_time">Doors Close</label>
                     <time-picker class="input {{ $errors->has('end_time') ? 'is-danger' : '' }}" 
                                  type="text" 
                                  name="end_time" 
@@ -91,42 +83,38 @@
                                  value="{{ old('end_time') }}"
                                  placeholder="hh:mm">
                     </time-picker>
+                    @if ($errors->has('end_time'))
+                        <p class="help is-danger">{{ $errors->first('end_time') }}</p>
+                    @endif
                 </div>
-                @if ($errors->has('end_time'))
-                    <p class="help is-danger">{{ $errors->first('end_time') }}</p>
-                @endif
             </div>
 
             <div class="field">
-                <label class="label">Event Image URL</label>
-                <div class="control">
-                    <input  class="input {{ $errors->has('image_url') ? 'is-danger' : '' }}" 
-                            type="text" 
-                            name="image_url" 
-                            dusk="thingImage"
-                            value="{{ old('image_url') }}"
-                            placeholder="A link to the event image">
-                </div>
+                <label class="label">Event Main Image</label>
+                <input class="input {{ $errors->has('image_url') ? 'is-danger' : '' }}" 
+                        type="file" 
+                        name="image_url" 
+                        dusk="thingImageUrl">
                 @if ($errors->has('image_url'))
                     <p class="help is-danger">{{ $errors->first('image_url') }}</p>
                 @endif
             </div>
 
             <div class="field">
-                <label class="label">Address</label>
+                <label class="label" for="address" >Address</label>
                 <div class="control">
-                    <google-auto-complete class="is-loading {{ $errors->has('image_url') ? 'is-danger' : '' }}">
+                    <google-auto-complete class="is-loading {{ $errors->has('postal_code') ? 'is-danger' : '' }}">
                     </google-auto-complete>
                 </div>
-                @if ($errors->has('location_url'))
-                    <p class="help is-danger">{{ $errors->first('location_url') }}</p>
+                @if ($errors->has('postal_code'))
+                    <p class="help is-danger">The address is required!</p>
                 @endif
             </div>
 
             <div class="field">
                 <label class="label">Description</label>
                 <div class="control">
-                    <textarea class="textarea" 
+                    <textarea class="textarea {{ $errors->has('description') ? 'is-danger' : '' }}"
                               name="description" 
                               placeholder="The description of the event."
                               dusk="thingDescription">{{ old('description') }}</textarea>
@@ -135,7 +123,33 @@
                     <p class="help is-danger">{{ $errors->first('description') }}</p>
                 @endif
             </div>
-
+            <div class="field">
+                <div class="control">
+                    <label class="label" for="tags">Event Categories (use enter to add multiple)</label>
+                    <tags-input element-id="tags"
+                        :existing-tags="{ 
+                            'web-development': 'Web Development',
+                            'php': 'PHP',
+                            'javascript': 'JavaScript',
+                        }"
+                        :old-tags="{{ 
+                            old('tags') ? json_encode(old('tags')) :
+                            (
+                                isset($postTags)
+                                ? json_encode($postTags)
+                                : json_encode('')
+                            ) 
+                        }}"
+                        :typeahead="true"
+                        tags=""
+                        input-class="input {{ $errors->has('tags') ? 'is-danger' : '' }}"
+                        placeholder="Add multiple tags related to your event here.">
+                    </tags-input>
+                    @if ($errors->has('tags'))
+                        <p class="help is-danger">You need to enter at least one category!</p>
+                    @endif
+                </div>
+            </div>
             @role('admin')
                 <div class="field">
                     <div class="control">
@@ -169,14 +183,16 @@
             </div>
 
             <div class="field is-grouped">
-                <div class="control">
-                    <button class="button is-link" 
-                            type="submit" 
-                            dusk="thingSubmit">Add Event</button>
-                </div>
-                <div class="control">
-                    <a class="button is-text" href=" {{ route('landing') }}">Cancel</a>
-                </div>
+            <p class="control">
+                <button class="button is-primary" type="submit" dusk="thingSubmit">
+                Add Event
+                </button>
+            </p>
+            <p class="control">
+                <a class="button is-light" href=" {{ route('landing') }}">
+                Cancel
+                </a>
+            </p>
             </div>
         </form>
     </div>

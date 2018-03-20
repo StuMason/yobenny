@@ -8,7 +8,6 @@ class Category extends BaseModel
 {
     protected $fillable = [
         'name',
-        'thing_uuid'
     ];
 
     public function things()

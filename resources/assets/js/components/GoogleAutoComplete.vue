@@ -8,6 +8,8 @@
         v-on:placechanged="getAddressData"
         country="uk"
         dusk="thingLocation"
+        @keypress.enter.prevent="getAddressData"
+        @submit.prevent
     >
     </vue-google-autocomplete>
     <input type="hidden" v-model="address.country" name="country" />
