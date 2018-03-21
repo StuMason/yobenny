@@ -1,4 +1,4 @@
-/*! bulma.io v0.6.2 | MIT License | github.com/jgthms/bulma */
+@import url(https://fonts.googleapis.com/css?family=Libre+Franklin|Rammetto+One);/*! bulma.io v0.6.2 | MIT License | github.com/jgthms/bulma */
 
 @-webkit-keyframes spinAround {
   from {
@@ -11505,5 +11505,18 @@ label.panel-block:hover {
 .footer {
   background-color: whitesmoke;
   padding: 3rem 1.5rem 6rem;
+}
+
+.cursive {
+  font-family: 'Rammetto One', cursive;
+}
+
+#hero-landing {
+  background: url("/storage/folkestone.jpg") center center no-repeat;
+  background-size: cover;
+}
+
+#landing-tiles {
+  background: #E0FFFF;
 }
 

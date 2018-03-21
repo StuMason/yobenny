@@ -1,5 +1,4 @@
 #!/bin/sh
-nvm install 6
 phpenv local 7.1
 mkdir -p ./bootstrap/cache
 cp .env.codeship .env

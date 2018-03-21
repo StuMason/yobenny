@@ -142,7 +142,7 @@
                         }}"
                         :typeahead="true"
                         tags=""
-                        input-class="input {{ $errors->has('tags') ? 'is-danger' : '' }}"
+                        input-class="{{ $errors->has('tags') ? 'is-danger' : '' }}"
                         placeholder="Add multiple tags related to your event here.">
                     </tags-input>
                     @if ($errors->has('tags'))

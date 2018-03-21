@@ -1,13 +1,24 @@
 @extends('layouts.app')
 
 @section('content')
-<section class="section">
+<section class="hero is-large" id="hero-landing">
+  <div class="hero-body">
+    <div class="container has-text-centered">
+      <h1 class="title is-size-1 has-text-light has-text-weight-bold">
+      Don't miss out on the good stuff.
+      </h1>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="landing-tiles">
     <div class="container">
+        <div class="tile is-ancestor">
         <div class="columns is-multiline">
         @foreach($things as $thing)
             <div class="column is-one-third">
                 <a href='{{ url("things/{$thing->uuid}") }}'>
-                    <div class="card">
+                    <div class="card has-shadow">
                         <div class="card-image">
                             <figure class="image is-4by3">
                             <img src="{{$thing->image_url}}" alt="Placeholder image">

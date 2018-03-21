@@ -15,46 +15,56 @@
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBTFC_t-kFiDR_eh5tLboLxVR5z9hr9Uk8&libraries=places"></script>
     <script async defer src="https://use.fontawesome.com/releases/v5.0.0/js/all.js"></script>
 </head>
-<body>
-    <nav class="navbar" role="navigation" aria-label="main navigation">
-        <div class="navbar-brand">
-            <a class="navbar-item" href="{{ url('/') }}">
-                <h1 class="title">{{ config('app.name', 'YoBenny') }}</h1>
-            </a>
-
-            <button class="button navbar-burger">
-            <span></span>
-            <span></span>
-            <span></span>
-            </button>
-        </div>
-        <div class="navbar-menu">
-            <!-- Authentication Links -->
-            <div class="navbar-end">
-                @role('admin')
-                <a class="navbar-item" href="{{ route('admin') }}">Admin</a>
-                @endrole
-                <a class="navbar-item" href="{{ route('things.add.form') }}">Submit a new event!</a>
-                @guest
-                    <a class="navbar-item" href="{{ route('login') }}">Login</a>
-                    <a class="navbar-item" href="{{ route('register') }}">Register</a>
-                @else
-                <div class="navbar-item has-dropdown is-hoverable">
-                    <a class="navbar-link">{{ Auth::user()->name }}</a>
-                    <div class="navbar-dropdown">
-                        <!-- Other navbar items -->
-                        <a class="navbar-item" href="{{ route('logout') }}"
-                            onclick="event.preventDefault();
-                                    document.getElementById('logout-form').submit();">
-                            Logout
-                        </a>
-                        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">{{ csrf_field() }}</form>
-                    </div>
-                </div>
-                @endguest
+<body class="has-navbar-fixed-top">
+    <header>
+        <nav class="navbar is-fixed-top has-shadow is-info" role="navigation" aria-label="main navigation">
+            <div class="navbar-brand is-hidden-desktop">
+                <a class="navbar-item" href="{{ url('/') }}">
+                <h1 class="title cursive has-text-light">{{ config('app.name', 'YoBenny') }}<i class="fas fa-bullhorn has-text-warning" data-fa-transform="shrink-8 left-4 up-5"></i></h1>
+                </a>
+                <button class="navbar-burger burger" data-target="navMenu">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
             </div>
-        </div>
-    </nav>
+            <div class="navbar-menu" id="navMenu">
+                <div class="navbar-start">
+                    <a class="navbar-item has-text-weight-bold" href="{{ route('things.add.form') }}">Add an event</a>
+                </div>
+
+                <div class="navbar-brand is-hidden-touch ">
+                    <a class="navbar-item" href="{{ url('/') }}">
+                        <h1 class="title is-size-1 cursive has-text-light">{{ config('app.name', 'YoBenny') }}<i class="fas fa-bullhorn has-text-warning" data-fa-transform="shrink-8 left-4 up-5"></i></h1>
+                    </a>
+                </div>
+
+                <div class="navbar-end">
+                    @role('admin')
+                    <a class="navbar-item" href="{{ route('admin') }}">Admin</a>
+                    @endrole
+                    @guest
+                        <a class="navbar-item" href="{{ route('login') }}">Login</a>
+                        <a class="navbar-item" href="{{ route('register') }}">Register</a>
+                    @else
+                    <div class="navbar-item has-dropdown is-hoverable">
+                        <a class="navbar-link">{{ Auth::user()->name }}</a>
+                        <div class="navbar-dropdown">
+                            <!-- Other navbar items -->
+                            <a class="navbar-item" href="{{ route('logout') }}"
+                                onclick="event.preventDefault();
+                                        document.getElementById('logout-form').submit();">
+                                Logout
+                            </a>
+                            <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">{{ csrf_field() }}</form>
+                        </div>
+                    </div>
+                    @endguest
+                </div>
+
+            </div>
+        </nav>
+    </header>
 
     @if (session('message'))
     <section class="section">
@@ -78,7 +88,7 @@
         <div class="container">
             <div class="content has-text-centered">
             <p>
-                <strong>YoBenny</strong> by <a href="https://artaten.com" target="_BLANK">artaten</a>. Copyright 2018.<br />
+                <strong>YoBenny</strong> by artaten. Copyright 2018.<br />
                 <a href="/terms">Terms</a> | <a href="/privacy">Privacy</a> | <a href="/about">About</a>
             </p>
             </div>
