@@ -5,7 +5,7 @@
   <div class="hero-body">
     <div class="container has-text-centered">
       <h1 class="title is-size-1 has-text-light has-text-weight-bold">
-      Don't miss out on the good stuff.
+          Stop missing out on the good stuff.
       </h1>
     </div>
   </div>

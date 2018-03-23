@@ -1,4 +1,4 @@
-@import url(https://fonts.googleapis.com/css?family=Libre+Franklin|Rammetto+One);/*! bulma.io v0.6.2 | MIT License | github.com/jgthms/bulma */
+@import url(//fonts.googleapis.com/css?family=Libre+Franklin|Rammetto+One);/*! bulma.io v0.6.2 | MIT License | github.com/jgthms/bulma */
 
 @-webkit-keyframes spinAround {
   from {
@@ -11509,6 +11509,16 @@ label.panel-block:hover {
 
 .cursive {
   font-family: 'Rammetto One', cursive;
+}
+
+.has-navbar-fixed-top {
+  margin-top: 50px;
+}
+
+@media screen and (min-width: 1024px) {
+  .has-navbar-fixed-top {
+    margin-top: 70px;
+  }
 }
 
 #hero-landing {

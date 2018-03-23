@@ -1,13 +1,20 @@
-@import url('https://fonts.googleapis.com/css?family=Libre+Franklin|Rammetto+One');
+@import url('//fonts.googleapis.com/css?family=Libre+Franklin|Rammetto+One');
 // Bulma
 @import "~bulma/bulma";
 
-//Nav
-
-//Homepage
 .cursive {
     font-family: 'Rammetto One', cursive; 
 }
+
+.has-navbar-fixed-top {
+    margin-top: 50px;
+}
+@include desktop {
+    .has-navbar-fixed-top {
+        margin-top: 70px;
+    }
+}
+
 
 #hero-landing {
     background: url("/storage/folkestone.jpg") center center no-repeat;
