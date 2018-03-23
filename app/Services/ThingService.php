@@ -37,8 +37,7 @@ class ThingService
         $address->save();
 
         $thing->address()->save($address);
-
-        $this->saveTagsAgainstEvent($thing, $input['tags']);
+        $thing->categories()->attach($this->tags($input['tags']));
 
         return $thing;
     }
@@ -48,13 +47,10 @@ class ThingService
         return isset($input['approved_by']) && $input['approved_by'] == "on" ? Auth::user()->uuid : null;
     }
 
-    private function saveTagsAgainstEvent($thing, $tags)
+    private function tags($tags)
     {
-        $tags = collect(explode(",", $tags));
-        $thingCategories = [];
-        $tags->each(function ($tag) use ($thingCategories) {
-            $thingCategories[] = Category::firstOrCreate(['name' => $tag]);
+        return collect(explode(",", $tags))->map(function ($tag) {
+            return Category::firstOrCreate(['name' => $tag])->id();
         });
-        $thing->categories()->attach($thingCategories);
     }
 }

@@ -17,6 +17,7 @@ class CreateThingCategoryTable extends Migration
             $table->increments('id');
             $table->uuid('thing_uuid');
             $table->uuid('category_uuid');
+            $table->timestamps();
         });
     }
 

@@ -12,4 +12,9 @@ class BaseModel extends Model
     protected $primaryKey = 'uuid';
     protected $keyType = 'string';
     public $incrementing = false;
+
+    public function id()
+    {
+        return $this->uuid->toString();
+    }
 }
