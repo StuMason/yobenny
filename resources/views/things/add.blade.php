@@ -99,17 +99,9 @@
                     <p class="help is-danger">{{ $errors->first('image_url') }}</p>
                 @endif
             </div>
-
-            <div class="field">
-                <label class="label" for="address" >Address</label>
-                <div class="control">
-                    <google-auto-complete class="is-loading {{ $errors->has('postal_code') ? 'is-danger' : '' }}">
-                    </google-auto-complete>
-                </div>
-                @if ($errors->has('postal_code'))
-                    <p class="help is-danger">The address is required!</p>
-                @endif
-            </div>
+        
+            <google-auto-complete class="is-loading {{ $errors->has('postal_code') ? 'is-danger' : '' }}">
+            </google-auto-complete>
 
             <div class="field">
                 <label class="label">Description</label>

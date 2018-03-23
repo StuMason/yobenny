@@ -1,24 +1,44 @@
 <template>
-  <div>
-    <vue-google-autocomplete
-        ref="address"
-        id="map"
-        classname="input form-control"
-        placeholder="Start typing the address to find it"
-        v-on:placechanged="getAddressData"
-        country="uk"
-        dusk="thingLocation"
-        @keypress.enter.prevent="getAddressData"
-        @submit.prevent
-    >
-    </vue-google-autocomplete>
-    <input type="hidden" v-model="address.country" name="country" />
-    <input type="hidden" v-model="address.latitude" name="latitude" />
-    <input type="hidden" v-model="address.longitude" name="longitude" />
-    <input type="hidden" v-model="address.postal_code" name="postal_code" />
-    <input type="hidden" v-model="address.route" name="route" />
-    <input type="hidden" v-model="address.street_number" name="street_number" />
-    <input type="hidden" v-model="addressMeta" name="google_json" />
+    <div class="field is-grouped is-grouped-multiline">
+        <div class="control is-expanded">
+            <label class="label" for="address" >Address</label>
+            <vue-google-autocomplete
+                ref="address"
+                id="map"
+                classname="input form-control"
+                placeholder="Start typing the address to find it"
+                v-on:placechanged="getAddressData"
+                country="uk"
+                dusk="thingLocation"
+                @keypress.enter.prevent="getAddressData"
+                @submit.prevent
+            >
+            </vue-google-autocomplete>
+        </div>
+        <div class="control is-expanded">
+            <div class="field">
+                <label class="label" for="street_number">Street Number</label>
+                <div class="control">
+                    <input class="input" type="text" v-model="address.street_number" name="street_number"/>
+                </div>
+            </div>
+            <div class="field">
+                <label class="label" for="route">Road</label>
+                <div class="control">
+                    <input class="input" type="text" v-model="address.route" name="route"/>
+                </div>
+            </div>
+            <div class="field">
+                <label class="label" for="postal_code">Post Code</label>
+                <div class="control">
+                    <input class="input" type="text" v-model="address.postal_code" name="postal_code"/>
+                </div>
+            </div>
+        </div>
+        <input type="hidden" v-model="addressMeta" name="google_json" />
+        <input type="hidden" v-model="address.country" name="country" />
+        <input type="hidden" v-model="address.latitude" name="latitude" />
+        <input type="hidden" v-model="address.longitude" name="longitude" />
   </div>
 </template>
 <script>
