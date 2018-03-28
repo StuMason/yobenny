@@ -15,6 +15,7 @@
                    class="input"
                 :placeholder="placeholder"
                 v-model="input"
+                dusk="thingTags"
                 @keypress.enter.prevent="tagFromInput"
                 @keypress.delete="removeLastTag"
                 @keypress.down="nextSearchResult"
@@ -26,7 +27,6 @@
             <input type="hidden" v-if="elementId" 
                 :name="elementId"
                 :id="elementId"
-                dusk="thingTags"
                 v-model="hiddenInput">
         </div>
 

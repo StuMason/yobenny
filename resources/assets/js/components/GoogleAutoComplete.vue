@@ -11,7 +11,6 @@
                 country="uk"
                 dusk="thingLocation"
                 @keypress.enter.prevent="getAddressData"
-                @submit.prevent
             >
             </vue-google-autocomplete>
         </div>

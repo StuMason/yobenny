@@ -13,7 +13,7 @@ class BaseModel extends Model
     protected $keyType = 'string';
     public $incrementing = false;
 
-    public function uuid()
+    public function getUuid()
     {
         return $this->uuid->toString();
     }

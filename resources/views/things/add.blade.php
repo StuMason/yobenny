@@ -18,7 +18,7 @@
             </div>
         </article>
         @endif
-        <form action="{{ route('things.add.process') }}" method="POST">
+        <form action="{{ route('things.add.process') }}" enctype="multipart/form-data" method="POST">
             {{ csrf_field() }}
             <div class="field">
                 <label class="label" for="title">Event Title</label>

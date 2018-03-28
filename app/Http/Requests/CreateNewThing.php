@@ -29,7 +29,7 @@ class CreateNewThing extends FormRequest
             "end_date" => "required|date",
             "start_time" => "required",
             "end_time" => "required",
-            "image_url" => "required",
+            "image_url" => "required|image|mimes:jpeg,png,jpg,gif,svg|max:2048",
             "description" => "required",
             "country" => "required",
             "latitude" => "required",

@@ -6,6 +6,8 @@ use Tests\TestCase;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use App\Services\ThingService;
 use App\Models\User;
+use Illuminate\Http\UploadedFile;
+use Mockery as m;
 
 class ThingServiceTest extends TestCase
 {
@@ -13,10 +15,12 @@ class ThingServiceTest extends TestCase
 
     public function testCreatesANewThingWithFullData()
     {
+        $file = m::mock(UploadedFile::class);
+        $file->shouldReceive('store')->once()->with('public/thing_images')->andReturn("public/thing_images/iIc7E5FIc1IiGNJmk2vd1wPv8tzkj5Mftl2UFUe2.png");
         $this->be(factory(User::class)->create());
         $data = $this->getRequestData();
         $service = new ThingService();
-        $thing = $service->addNewThing($data);
+        $thing = $service->addNewThing($data, $file);
         $this->assertEquals(
             4,
             $thing->categories->count(),
@@ -37,7 +41,7 @@ class ThingServiceTest extends TestCase
             "end_date" => "23-03-2018",
             "start_time" => "12:00",
             "end_time" => "13:00",
-            "image_url" => "readme.md",
+            "image_url" => "readme.png",
             "street_number" => "7",
             "route" => "Renfield Street",
             "postal_code" => "G3 2LL",
@@ -45,7 +49,7 @@ class ThingServiceTest extends TestCase
             "country" => "United Kingdom",
             "latitude" => "55.8607531",
             "longitude" => "-4.257220899999993",
-            "description" => "Descriptio",
+            "description" => "Description",
             "tags" => "adult,party,rave,illegal",
             "owner" => "on",
         ];

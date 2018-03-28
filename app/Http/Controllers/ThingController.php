@@ -61,7 +61,7 @@ class ThingController extends Controller
     public function addThingProcess(CreateNewThing $request)
     {
         try {
-            $thing = $this->service->addNewThing($request->all());
+            $thing = $this->service->addNewThing($request->all(), $request->file('image_url'));
             return redirect("things/{$thing->uuid}")->withMessage("Event successfully added!");
         } catch (\Exception $e) {
             $this->throwAndGoBack($e);

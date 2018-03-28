@@ -12,7 +12,7 @@ use Illuminate\Support\Carbon;
 
 class ThingService
 {
-    public function addNewThing($input)
+    public function addNewThing($input, $image)
     {
         $thing = new Thing();
         $thing->owner_uuid = Auth::user()->uuid;
@@ -22,7 +22,7 @@ class ThingService
         $thing->end_date = Carbon::parse($input['end_date']);
         $thing->start_time = Carbon::parse($input['start_time']);
         $thing->end_time = Carbon::parse($input['end_time']);
-        $thing->image_url = $input['image_url'];
+        $thing->image_url = $this->storeImage($image);
         $thing->description = $input['description'];
         $thing->save();
 
@@ -50,7 +50,12 @@ class ThingService
     private function tags($tags)
     {
         return collect(explode(",", $tags))->map(function ($tag) {
-            return Category::firstOrCreate(['name' => $tag])->uuid();
+            return Category::firstOrCreate(['name' => $tag])->getUuid();
         });
+    }
+
+    private function storeImage($image)
+    {
+        return substr($image->store('public/thing_images'), 6);
     }
 }

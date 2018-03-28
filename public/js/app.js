@@ -44748,7 +44748,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
 
 
 
@@ -45163,9 +45162,6 @@ var render = function() {
               }
               $event.preventDefault()
               return _vm.getAddressData($event)
-            },
-            submit: function($event) {
-              $event.preventDefault()
             }
           }
         })
