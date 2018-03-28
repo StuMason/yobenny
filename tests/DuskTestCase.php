@@ -6,12 +6,15 @@ use Laravel\Dusk\TestCase as BaseTestCase;
 use Facebook\WebDriver\Chrome\ChromeOptions;
 use Facebook\WebDriver\Remote\RemoteWebDriver;
 use Facebook\WebDriver\Remote\DesiredCapabilities;
+use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Illuminate\Support\Collection;
 use App\Models\User;
+use App\Models\Role;
+use App\Models\Address;
 
 abstract class DuskTestCase extends BaseTestCase
 {
-    use CreatesApplication;
+    use CreatesApplication, DatabaseMigrations;
 
     /**
      * Prepare for Dusk test execution.
@@ -33,7 +36,7 @@ abstract class DuskTestCase extends BaseTestCase
     {
         $options = (new ChromeOptions)->addArguments([
             '--disable-gpu',
-            '--headless',
+            //'--headless',
             '--window-size=1920,1920'
         ]);
 
@@ -46,17 +49,28 @@ abstract class DuskTestCase extends BaseTestCase
         );
     }
 
-    public function loginAdmin()
+    public function login($admin = false)
     {
-        $this->browse(function ($browser) {
-            $browser->loginAs(User::where('email', env("ADMIN_EMAIL"))->firstOrFail());
+        $user = factory(User::class)->create();
+        
+        if ($admin) {
+            $this->makeAdmin($user);
+        }
+
+        $this->browse(function ($browser) use ($user) {
+            $browser->loginAs($user);
         });
     }
 
-    public function loginUser()
+    private function makeAdmin($user)
     {
-        $this->browse(function ($browser) {
-            $browser->loginAs(User::where('email', env("TEST_USER_EMAIL"))->firstOrFail());
-        });
+        $admin = Role::where('name', Role::ADMIN)->first();
+        if (!$admin) {
+            $admin = new Role();
+            $admin->name = Role::ADMIN;
+            $admin->description = 'An Admin User';
+            $admin->save();
+        }
+        $user->roles()->attach($admin);
     }
 }

@@ -26,6 +26,7 @@
             <input type="hidden" v-if="elementId" 
                 :name="elementId"
                 :id="elementId"
+                dusk="thingTags"
                 v-model="hiddenInput">
         </div>
 

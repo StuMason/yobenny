@@ -50,7 +50,7 @@ class ThingService
     private function tags($tags)
     {
         return collect(explode(",", $tags))->map(function ($tag) {
-            return Category::firstOrCreate(['name' => $tag])->id();
+            return Category::firstOrCreate(['name' => $tag])->uuid();
         });
     }
 }

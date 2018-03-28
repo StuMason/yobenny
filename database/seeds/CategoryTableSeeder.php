@@ -7,8 +7,6 @@ class CategoryTableSeeder extends Seeder
 {
     public function run()
     {
-        for ($i = 0; $i < 10; $i++) {
-            factory(Category::class)->create();
-        }
+        factory(Category::class, 10)->create();
     }
 }
