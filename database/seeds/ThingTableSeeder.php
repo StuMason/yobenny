@@ -15,7 +15,7 @@ class ThingTableSeeder extends Seeder
      */
     public function run()
     {
-        $admin = User::where('email', 'admin@admin.admin')->first();
+        $admin = User::where('email', env('ADMIN_EMAIL'))->first();
         factory(Thing::class, 10)->create([
             'approved_by' => $admin->uuid,
         ])->each(function ($thing) {
