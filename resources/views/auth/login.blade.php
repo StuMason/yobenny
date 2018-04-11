@@ -22,27 +22,35 @@
     <div class="column is-4 is-offset-4">
       <h3 class="title">Login</h3>
       <div class="box">
-        <!--<a href="{{ route('social.oauth', 'facebook') }}" class="btn btn-primary btn-block">
-            <i class="fab fa-facebook"></i> Login with Facebook
-        </a>
+        <div class="field">
+            <div class="control">
+                <a href="{{ route('social.oauth', 'google') }}" class="button is-fullwidth ">
+                    <i class="fab fa-google"></i>&nbsp;Login with Google
+                </a>
+            </div>
+        </div>
 
-        <a href="{{ route('social.oauth', 'google') }}" class="btn btn-danger btn-block">
-            <i class="fab fa-google"></i> Login with Google
-        </a>-->
+        <div class="field">
+            <div class="control">
+                <a href="{{ route('social.oauth', 'twitter') }}" class="button is-fullwidth">
+                    <i class="fab fa-twitter"></i>&nbsp;Login with Twitter
+                </a>
+            </div>
+        </div>
 
-                <a href="{{ route('social.oauth', 'github') }}" class="button is-primary">
-            <i class="fab fa-github"></i> Login with Github
-        </a>
-
-        <a href="{{ route('social.oauth', 'twitter') }}" class="button is-primary">
-            <i class="fab fa-twitter"></i>&nbsp;Login with Twitter
-        </a>
+        <div class="field">
+            <div class="control">
+                <a href="{{ route('social.oauth', 'facebook') }}" class="button is-fullwidth">
+                    <i class="fab fa-facebook"></i>&nbsp;Login with Facebook
+                </a>
+            </div>
+        </div>
 
         <form method="POST" action="{{ route('login') }}">
             {{ csrf_field() }}
             <div class="field">
                 <div class="control">
-                    <input id="email" placeholder="Your Email" type="email" class="input is-large" name="email" value="{{ old('email') }}" required autofocus>
+                    <input id="email" placeholder="Your Email" type="email" class="input" name="email" value="{{ old('email') }}" required autofocus>
                     @if ($errors->has('email'))
                         <span class="help-block">
                             <strong>{{ $errors->first('email') }}</strong>
@@ -52,7 +60,7 @@
             </div>
             <div class="field">
                 <div class="control">
-                    <input id="password" type="password" class="input is-large" name="password" placeholder="Your Password" required>
+                    <input id="password" type="password" class="input" name="password" placeholder="Your Password" required>
                     @if ($errors->has('password'))
                         <span class="help-block">
                             <strong>{{ $errors->first('password') }}</strong>
@@ -66,7 +74,7 @@
                 Remember me
                 </label>
             </div>
-            <button type="submit" class="button is-fullwidth is-info is-large">Login</button>
+            <button type="submit" class="button is-fullwidth is-info">Login</button>
             </form>
       </div>
       <p class="has-text-grey">
