@@ -1482,9 +1482,9 @@ Vue.component('date-picker', __webpack_require__(48));
 Vue.component('time-picker', __webpack_require__(62));
 Vue.component('google-auto-complete', __webpack_require__(65));
 
-if (document.getElementById('add-thing')) {
-    var addThing = new Vue({
-        el: '#add-thing'
+if (document.getElementById('add-event')) {
+    var addEvent = new Vue({
+        el: '#add-event'
     });
 }
 
@@ -41626,7 +41626,7 @@ var render = function() {
           attrs: {
             type: "text",
             placeholder: _vm.placeholder,
-            dusk: "thingTags"
+            dusk: "eventTags"
           },
           domProps: { value: _vm.input },
           on: {
@@ -45149,7 +45149,7 @@ var render = function() {
             classname: "input form-control",
             placeholder: "Start typing the address to find it",
             country: "uk",
-            dusk: "thingLocation"
+            dusk: "eventLocation"
           },
           on: {
             placechanged: _vm.getAddressData,
