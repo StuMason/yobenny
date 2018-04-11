@@ -3,7 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
-use App\Models\Thing;
+use App\Models\Event;
 use App\Models\User;
 
 class Address extends BaseModel
@@ -24,7 +24,7 @@ class Address extends BaseModel
         "address_json",
         "contact_number",
         "user_uuid",
-        "thing_uuid"
+        "event_uuid"
     ];
 
     public function user()
@@ -32,8 +32,8 @@ class Address extends BaseModel
         return $this->belongsTo(User::class);
     }
 
-    public function thing()
+    public function event()
     {
-        return $this->belongsTo(Thing::class);
+        return $this->belongsTo(Event::class);
     }
 }

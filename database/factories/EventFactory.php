@@ -1,10 +1,10 @@
 <?php
 
 use Faker\Generator as Faker;
-use App\Models\Thing;
+use App\Models\Event;
 use App\Models\User;
 
-$factory->define(Thing::class, function (Faker $faker) {
+$factory->define(Event::class, function (Faker $faker) {
     return [
         'title' => $faker->sentence,
         'owner_uuid' => factory(User::class)->create(),

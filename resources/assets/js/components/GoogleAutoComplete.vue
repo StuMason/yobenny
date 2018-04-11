@@ -9,7 +9,7 @@
                 placeholder="Start typing the address to find it"
                 v-on:placechanged="getAddressData"
                 country="uk"
-                dusk="thingLocation"
+                dusk="eventLocation"
                 @keypress.enter.prevent="getAddressData"
             >
             </vue-google-autocomplete>

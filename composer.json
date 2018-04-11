@@ -1,7 +1,7 @@
 {
     "name": "stumason/yobenny",
     "description": "Testing Laravel 5.6",
-    "keywords": ["Thing thing"],
+    "keywords": ["Events"],
     "license": "MIT",
     "type": "project",
     "require": {

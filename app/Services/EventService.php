@@ -4,27 +4,27 @@ namespace App\Services;
 
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
-use App\Models\Thing;
+use App\Models\Event;
 use App\Models\Role;
 use App\Models\Address;
 use App\Models\Category;
 use Illuminate\Support\Carbon;
 
-class ThingService
+class EventService
 {
-    public function addNewThing($input, $image)
+    public function addNewEvent($input, $image)
     {
-        $thing = new Thing();
-        $thing->owner_uuid = Auth::user()->uuid;
-        $thing->title = $input['title'];
-        $thing->approved_by = $this->setApprovedBy($input);
-        $thing->start_date = Carbon::parse($input['start_date']);
-        $thing->end_date = Carbon::parse($input['end_date']);
-        $thing->start_time = Carbon::parse($input['start_time']);
-        $thing->end_time = Carbon::parse($input['end_time']);
-        $thing->image_url = $this->storeImage($image);
-        $thing->description = $input['description'];
-        $thing->save();
+        $event = new Event();
+        $event->owner_uuid = Auth::user()->uuid;
+        $event->title = $input['title'];
+        $event->approved_by = $this->setApprovedBy($input);
+        $event->start_date = Carbon::parse($input['start_date']);
+        $event->end_date = Carbon::parse($input['end_date']);
+        $event->start_time = Carbon::parse($input['start_time']);
+        $event->end_time = Carbon::parse($input['end_time']);
+        $event->image_url = $this->storeImage($image);
+        $event->description = $input['description'];
+        $event->save();
 
         $address = new Address();
         $address->country = $input['country'];
@@ -36,10 +36,10 @@ class ThingService
         $address->address_json = $input['google_json'];
         $address->save();
 
-        $thing->address()->save($address);
-        $thing->categories()->attach($this->tags($input['tags']));
+        $event->address()->save($address);
+        $event->categories()->attach($this->tags($input['tags']));
 
-        return $thing;
+        return $event;
     }
 
     private function setApprovedBy($input)
@@ -56,6 +56,6 @@ class ThingService
 
     private function storeImage($image)
     {
-        return substr($image->store('public/thing_images'), 6);
+        return substr($image->store('public/event_images'), 6);
     }
 }

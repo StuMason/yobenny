@@ -64,7 +64,7 @@ class CategoryTableSeeder extends Seeder
             'charity',
             'causes'
         ])->each(function ($name) {
-            factory(Category::class)->create(['name' => $nam]);
+            factory(Category::class)->create(['name' => $name]);
         });
     }
 }

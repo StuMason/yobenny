@@ -4,31 +4,31 @@ namespace Tests\Unit;
 
 use Tests\TestCase;
 use Illuminate\Foundation\Testing\RefreshDatabase;
-use App\Services\ThingService;
+use App\Services\EventService;
 use App\Models\User;
 use Illuminate\Http\UploadedFile;
 use Mockery as m;
 
-class ThingServiceTest extends TestCase
+class EventServiceTest extends TestCase
 {
     use RefreshDatabase;
 
-    public function testCreatesANewThingWithFullData()
+    public function testCreatesANewEventWithFullData()
     {
         $file = m::mock(UploadedFile::class);
-        $file->shouldReceive('store')->once()->with('public/thing_images')->andReturn("public/thing_images/iIc7E5FIc1IiGNJmk2vd1wPv8tzkj5Mftl2UFUe2.png");
+        $file->shouldReceive('store')->once()->with('public/event_images')->andReturn("public/event_images/iIc7E5FIc1IiGNJmk2vd1wPv8tzkj5Mftl2UFUe2.png");
         $this->be(factory(User::class)->create());
         $data = $this->getRequestData();
-        $service = new ThingService();
-        $thing = $service->addNewThing($data, $file);
+        $service = new EventService();
+        $event = $service->addNewEvent($data, $file);
         $this->assertEquals(
             4,
-            $thing->categories->count(),
+            $event->categories->count(),
         "The 4 categories did not build correctly!"
         );
         $this->assertEquals(
             "G3 2LL",
-            $thing->address->postal_code,
+            $event->address->postal_code,
         "The address did not save correctly!"
         );
     }

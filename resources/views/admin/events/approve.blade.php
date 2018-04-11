@@ -16,15 +16,15 @@
                 </tr>
             </thead>
             <tbody>
-                @foreach($things as $thing)
+                @foreach($events as $event)
                     <tr>
-                        <td>{{$thing->title}}</td>
-                        <td>{{ Carbon\Carbon::parse($thing->start_date)->format('D jS \\of M') }}</td>
-                        <td>{{ Carbon\Carbon::parse($thing->end_date)->format('D jS \\of M') }}</td>
-                        <td>{{ Carbon\Carbon::parse($thing->created_at)->diffForHumans() }}</td>
-                        <td>{{ $thing->user->name }}</td>
-                        <td><a href='{{ url("things/{$thing->uuid}") }}'>View</a></td>
-                        <td><a href='{{ url("admin/approve/{$thing->uuid}") }}'>Approve</a></td>
+                        <td>{{$event->title}}</td>
+                        <td>{{ Carbon\Carbon::parse($event->start_date)->format('D jS \\of M') }}</td>
+                        <td>{{ Carbon\Carbon::parse($event->end_date)->format('D jS \\of M') }}</td>
+                        <td>{{ Carbon\Carbon::parse($event->created_at)->diffForHumans() }}</td>
+                        <td>{{ $event->user->name }}</td>
+                        <td><a href='{{ url("events/{$event->uuid}") }}'>View</a></td>
+                        <td><a href='{{ url("admin/approve/{$event->uuid}") }}'>Approve</a></td>
                     </tr>
                 @endforeach
             </tbody>

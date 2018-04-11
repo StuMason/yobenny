@@ -15,31 +15,31 @@
                 </tr>
             </thead>
             <tbody>
-                @foreach($things as $thing)
+                @foreach($events as $event)
                     <tr>
-                        <td>{{$thing->title}}</td>
+                        <td>{{$event->title}}</td>
                         <td>
-                            {{ Carbon\Carbon::parse($thing->start_date)->format('D jS \\of M') }}
-                            ({{ Carbon\Carbon::parse($thing->start_time)->format('H:i') }})
+                            {{ Carbon\Carbon::parse($event->start_date)->format('D jS \\of M') }}
+                            ({{ Carbon\Carbon::parse($event->start_time)->format('H:i') }})
                         </td>
                         <td>
-                            {{ Carbon\Carbon::parse($thing->end_date)->format('D jS \\of M') }}
-                            ({{ Carbon\Carbon::parse($thing->end_time)->format('H:i') }})
+                            {{ Carbon\Carbon::parse($event->end_date)->format('D jS \\of M') }}
+                            ({{ Carbon\Carbon::parse($event->end_time)->format('H:i') }})
                         </td>
                         <td>
-                            {{ $thing->user->name }}
-                            ({{ Carbon\Carbon::parse($thing->created_at)->diffForHumans() }})
+                            {{ $event->user->name }}
+                            ({{ Carbon\Carbon::parse($event->created_at)->diffForHumans() }})
                         </td>
                         <td>
-                            <a href='{{ url("things/{$thing->uuid}") }}' class="button is-small is-info">View</a>
+                            <a href='{{ url("events/{$event->uuid}") }}' class="button is-small is-info">View</a>
                         </td>
                         <td>
-                            @if($thing->approved_by)
-                                <a href='{{ url("admin/approve/{$thing->uuid}") }}' class="button is-small is-danger">
+                            @if($event->approved_by)
+                                <a href='{{ url("admin/approve/{$event->uuid}") }}' class="button is-small is-danger">
                                     <i class="fas fa-times"></i>
                                 </a>
                             @else
-                                <a href='{{ url("admin/approve/{$thing->uuid}") }}' class="button is-small is-success">
+                                <a href='{{ url("admin/approve/{$event->uuid}") }}' class="button is-small is-success">
                                     <i class="fas fa-check"></i>
                                 </a>
                             @endif

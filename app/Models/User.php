@@ -82,8 +82,8 @@ class User extends Authenticatable
         return null !== $this->roles()->where('name', $role)->first();
     }
 
-    public function things()
+    public function events()
     {
-        return $this->hasMany(Thing::class);
+        return $this->hasMany(Event::class);
     }
 }

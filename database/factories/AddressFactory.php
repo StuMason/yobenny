@@ -2,7 +2,7 @@
 
 use Faker\Generator as Faker;
 use App\Models\User;
-use App\Models\Thing;
+use App\Models\Event;
 
 $factory->define(App\Models\Address::class, function (Faker $faker) {
     return [
@@ -16,6 +16,6 @@ $factory->define(App\Models\Address::class, function (Faker $faker) {
         "address_json" => json_encode($faker->words),
         "contact_number" => $faker->phoneNumber,
         "user_uuid" => factory(User::class)->create()->id,
-        "thing_uuid" => factory(Thing::class)->create()->id
+        "event_uuid" => factory(Event::class)->create()->id
     ];
 });

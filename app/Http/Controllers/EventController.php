@@ -4,14 +4,14 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use App\Models\Thing;
+use App\Models\Event;
 use App\Models\Role;
 use App\Models\Address;
 use App\Models\Category;
-use App\Services\ThingService;
-use App\Http\Requests\CreateNewThing;
+use App\Services\EventService;
+use App\Http\Requests\CreateNewEvent;
 
-class ThingController extends Controller
+class EventController extends Controller
 {
     private $service;
     /**
@@ -19,7 +19,7 @@ class ThingController extends Controller
      *
      * @return void
      */
-    public function __construct(ThingService $service)
+    public function __construct(EventService $service)
     {
         $this->middleware('auth');
         $this->service = $service;
@@ -30,10 +30,10 @@ class ThingController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function showThing(Request $request, $thing_uuid)
+    public function showEvent(Request $request, $event_uuid)
     {
         try {
-            return view('things.show', ['thing' => Thing::findOrFail($thing_uuid)]);
+            return view('events.show', ['event' => Event::findOrFail($event_uuid)]);
         } catch (\Exception $e) {
             $this->throwAndGoBack($e);
         }
@@ -44,10 +44,10 @@ class ThingController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function addThingForm()
+    public function addEventForm()
     {
         try {
-            return view('things.add', ['admin' => Auth::user()->hasRole(Role::ADMIN)]);
+            return view('events.add', ['admin' => Auth::user()->hasRole(Role::ADMIN)]);
         } catch (\Exception $e) {
             $this->throwAndGoBack($e);
         }
@@ -58,11 +58,11 @@ class ThingController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function addThingProcess(CreateNewThing $request)
+    public function addEventProcess(CreateNewEvent $request)
     {
         try {
-            $thing = $this->service->addNewThing($request->all(), $request->file('image_url'));
-            return redirect("things/{$thing->uuid}")->withMessage("Event successfully added!");
+            $event = $this->service->addNewEvent($request->all(), $request->file('image_url'));
+            return redirect("events/{$event->uuid}")->withMessage("Event successfully added!");
         } catch (\Exception $e) {
             $this->throwAndGoBack($e);
         }

@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-<section class="section" id="add-thing">
+<section class="section" id="add-event">
     <div class="container">
         @if($errors->any())
         <article class="message is-danger">
@@ -18,7 +18,7 @@
             </div>
         </article>
         @endif
-        <form action="{{ route('things.add.process') }}" enctype="multipart/form-data" method="POST">
+        <form action="{{ route('events.add.process') }}" enctype="multipart/form-data" method="POST">
             {{ csrf_field() }}
             <div class="field">
                 <label class="label" for="title">Event Title</label>
@@ -27,7 +27,7 @@
                             type="text" 
                             name="title" 
                             value="{{ old('title') }}"
-                            dusk="thingTitle"
+                            dusk="eventTitle"
                             placeholder="Event Title - short and sweet!">
                 </div>
                 @if ($errors->has('title'))
@@ -40,7 +40,7 @@
                     <date-picker name="start_date"
                                 class="input {{ $errors->has('start_date') ? 'is-danger' : '' }}" 
                                 type="text" 
-                                dusk="thingStartDate"
+                                dusk="eventStartDate"
                                 value="{{ old('start_date') }}"
                     ></date-picker>
                     @if ($errors->has('start_date'))
@@ -52,7 +52,7 @@
                     <date-picker name="end_date"
                                 class="input {{ $errors->has('end_date') ? 'is-danger' : '' }}" 
                                 type="text" 
-                                dusk="thingEndDate"
+                                dusk="eventEndDate"
                                 value="{{ old('end_date') }}"
                     ></date-picker>
                     @if ($errors->has('end_date'))
@@ -66,7 +66,7 @@
                     <time-picker class="input {{ $errors->has('start_time') ? 'is-danger' : '' }}" 
                                  type="text" 
                                  name="start_time" 
-                                 dusk="thingStartTime"
+                                 dusk="eventStartTime"
                                  value="{{ old('start_time') }}"
                                  placeholder="hh:mm"
                     ></time-picker>
@@ -79,7 +79,7 @@
                     <time-picker class="input {{ $errors->has('end_time') ? 'is-danger' : '' }}" 
                                  type="text" 
                                  name="end_time" 
-                                 dusk="thingEndTime"
+                                 dusk="eventEndTime"
                                  value="{{ old('end_time') }}"
                                  placeholder="hh:mm">
                     </time-picker>
@@ -94,7 +94,7 @@
                 <input class="input {{ $errors->has('image_url') ? 'is-danger' : '' }}" 
                         type="file" 
                         name="image_url" 
-                        dusk="thingImageUrl">
+                        dusk="eventImageUrl">
                 @if ($errors->has('image_url'))
                     <p class="help is-danger">{{ $errors->first('image_url') }}</p>
                 @endif
@@ -109,7 +109,7 @@
                     <textarea class="textarea {{ $errors->has('description') ? 'is-danger' : '' }}"
                               name="description" 
                               placeholder="The description of the event."
-                              dusk="thingDescription">{{ old('description') }}</textarea>
+                              dusk="eventDescription">{{ old('description') }}</textarea>
                 </div>
                 @if ($errors->has('description'))
                     <p class="help is-danger">{{ $errors->first('description') }}</p>
@@ -148,7 +148,7 @@
                         <label class="checkbox">
                         <input type="checkbox" 
                                name="approved_by"
-                               dusk="thingApprovedBy">
+                               dusk="eventApprovedBy">
                             Auto Approve this event.
                         </label>
                     </div>
@@ -162,13 +162,13 @@
                     <input type="radio"
                            name="owner" 
                            selected="selected"
-                           dusk="thingOwnerTrue">
+                           dusk="eventOwnerTrue">
                         Yes
                     </label>
                     <label class="radio">
                     <input type="radio" 
                            name="owner"
-                           dusk="thingOwnerFalse">
+                           dusk="eventOwnerFalse">
                         No
                     </label>
                 </div>
@@ -176,7 +176,7 @@
 
             <div class="field is-grouped">
             <p class="control">
-                <button class="button is-primary" type="submit" dusk="thingSubmit">
+                <button class="button is-primary" type="submit" dusk="eventSubmit">
                 Add Event
                 </button>
             </p>

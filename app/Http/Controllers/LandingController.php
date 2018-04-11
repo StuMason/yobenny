@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Thing;
+use App\Models\Event;
 
 class LandingController extends Controller
 {
@@ -14,6 +14,7 @@ class LandingController extends Controller
      */
     public function index()
     {
-        return view('landing', ['things' => Thing::whereNotNull('approved_by')->get()]);
+        $events = Event::whereNotNull('approved_by')->orderBy('start_date', 'DESC')->get();
+        return view('landing', ['events' => $events]);
     }
 }

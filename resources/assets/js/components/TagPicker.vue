@@ -15,7 +15,7 @@
                    class="input"
                 :placeholder="placeholder"
                 v-model="input"
-                dusk="thingTags"
+                dusk="eventTags"
                 @keypress.enter.prevent="tagFromInput"
                 @keypress.delete="removeLastTag"
                 @keypress.down="nextSearchResult"

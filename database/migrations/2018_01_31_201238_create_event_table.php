@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateThingTable extends Migration
+class CreateEventTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,7 @@ class CreateThingTable extends Migration
      */
     public function up()
     {
-        Schema::create('things', function (Blueprint $table) {
+        Schema::create('events', function (Blueprint $table) {
             $table->uuid('uuid')->primary();
             $table->uuid('owner_uuid');
             $table->string('title');
@@ -23,7 +23,7 @@ class CreateThingTable extends Migration
             $table->datetime('start_time');
             $table->datetime('end_time');
             $table->string('image_url');
-            $table->string('description');
+            $table->longText('description');
             $table->timestamps();
         });
     }
@@ -35,6 +35,6 @@ class CreateThingTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('things');
+        Schema::dropIfExists('events');
     }
 }

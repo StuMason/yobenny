@@ -30,7 +30,7 @@
             </div>
             <div class="navbar-menu" id="navMenu">
                 <div class="navbar-start">
-                    <a class="navbar-item has-text-weight-bold" href="{{ route('things.add.form') }}">Add an event</a>
+                    <a class="navbar-item has-text-weight-bold" href="{{ route('events.add.form') }}">Add an event</a>
                 </div>
 
                 <div class="navbar-brand is-hidden-touch ">

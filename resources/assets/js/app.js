@@ -18,9 +18,9 @@ Vue.component('date-picker', require('./components/DatePicker.vue'));
 Vue.component('time-picker', require('./components/TimePicker.vue'));
 Vue.component('google-auto-complete', require('./components/GoogleAutoComplete.vue'));
 
-if(document.getElementById('add-thing')) {
-    const addThing = new Vue({
-        el: '#add-thing'
+if(document.getElementById('add-event')) {
+    const addEvent = new Vue({
+        el: '#add-event'
     });
 }
 

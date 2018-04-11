@@ -6,7 +6,7 @@ use App\Models\User;
 use App\Models\Category;
 use App\Models\Address;
 
-class Thing extends BaseModel
+class Event extends BaseModel
 {
     /**
      * The attributes that are mass assignable.

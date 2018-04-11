@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Thing;
+use App\Models\Event;
 use App\Models\Role;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
@@ -16,8 +16,8 @@ class AdminController extends Controller
             $request->user()->authorizeRoles(Role::ADMIN);
             $query = $request->all();
 
-            $things = Thing::all();
-            return view('admin.index', ['things' => $things]);
+            $events = Event::all();
+            return view('admin.index', ['events' => $events]);
         } catch (\Exception $e) {
             $message = sprintf(
                 "Error - Message: %s File: %s Line: %s",
@@ -30,12 +30,12 @@ class AdminController extends Controller
         }
     }
 
-    public function approveThings(Request $request)
+    public function approveEvents(Request $request)
     {
         try {
             $request->user()->authorizeRoles(Role::ADMIN);
-            $things = Thing::whereNull('approved_by')->get();
-            return view('admin.things.approve', ['things' => $things]);
+            $events = Event::whereNull('approved_by')->get();
+            return view('admin.events.approve', ['events' => $events]);
         } catch (\Exception $e) {
             $message = sprintf(
                 "Error - Message: %s File: %s Line: %s",
@@ -48,20 +48,18 @@ class AdminController extends Controller
         }
     }
 
-    public function approve(Request $request, $thing_uuid)
+    public function approve(Request $request, $event_uuid)
     {
         try {
             $request->user()->authorizeRoles(Role::ADMIN);
-            $thing = Thing::findOrFail($thing_uuid);
-            if ($thing->approved_by) {
-                $thing->approved_by = null;
+            $event = Event::findOrFail($event_uuid);
+            if ($event->approved_by) {
+                $event->approved_by = null;
             } else {
-                $thing->approved_by = Auth::user()->uuid;
+                $event->approved_by = Auth::user()->uuid;
             }
-            $thing->save();
-    
-            $message = "Event successfully approved! It's now live on the landing page";
-            return redirect("/admin/approve")->withMessage($message);
+            $event->save();
+            return redirect("/admin")->withMessage("Event successfully approved! It's now live on the landing page");
         } catch (\Exception $e) {
             $message = sprintf(
                 "Error - Message: %s File: %s Line: %s",

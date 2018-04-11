@@ -1,12 +1,12 @@
 <?php
 
 use Illuminate\Database\Seeder;
-use App\Models\Thing;
+use App\Models\Event;
 use App\Models\User;
 use App\Models\Category;
 use App\Models\Address;
 
-class ThingTableSeeder extends Seeder
+class EventTableSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -16,11 +16,11 @@ class ThingTableSeeder extends Seeder
     public function run()
     {
         $admin = User::where('email', env('ADMIN_EMAIL'))->first();
-        factory(Thing::class, 10)->create([
+        factory(Event::class, 10)->create([
             'approved_by' => $admin->uuid,
-        ])->each(function ($thing) {
-            $thing->categories()->attach(Category::all());
-            $thing->address()->save(factory(Address::class)->create());
+        ])->each(function ($event) {
+            $event->categories()->attach(Category::all());
+            $event->address()->save(factory(Address::class)->create());
         });
     }
 }

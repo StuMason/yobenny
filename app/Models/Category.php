@@ -2,7 +2,7 @@
 
 namespace App\Models;
 
-use App\Models\Thing;
+use App\Models\Event;
 
 class Category extends BaseModel
 {
@@ -10,8 +10,8 @@ class Category extends BaseModel
         'name',
     ];
 
-    public function things()
+    public function events()
     {
-        return $this->belongsToMany(Thing::class);
+        return $this->belongsToMany(Event::class);
     }
 }
